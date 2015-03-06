@@ -74,7 +74,7 @@ public:
             sk = m_atol + m_rtol * max BOOST_PREVENT_MACRO_SUBSTITUTION ( abs( xold[i] ) , abs( x[i] ) );
             err += xerr[i] * xerr[i] / sk / sk;
         }
-        return sqrt( err / value_type( n ) );
+        return std::sqrt( err / value_type( n ) );
     }
 
     value_type last_error( void ) const
