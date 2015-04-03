@@ -25,6 +25,5 @@ project
 test-suite "odeint-mtl4"
     :
     [ run mtl4_resize.cpp ]
-    [ run lorenz.cpp ]
     : <testing.launcher>valgrind
     ;
