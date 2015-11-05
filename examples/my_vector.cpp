@@ -24,16 +24,10 @@ public:
     typedef vector::const_iterator const_iterator;
 
 public:
-    my_vector( const size_t N )
+    my_vector( const size_t N = MAX_N )
         : m_v( N )
     { 
-        m_v.reserve( MAX_N );
-    }
-
-    my_vector()
-        : m_v()
-    {
-        m_v.reserve( MAX_N );
+        assert( N <= MAX_N );
     }
 
 // ... [ implement container interface ]
