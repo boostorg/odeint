@@ -32,11 +32,19 @@ public:
 
 // ... [ implement container interface ]
 //]
+#ifdef DEBUG
+    const double & operator[]( const size_t n ) const
+    { return m_v.at(n); }
+
+    double & operator[]( const size_t n )
+    { return m_v.at(n); }
+#else
     const double & operator[]( const size_t n ) const
     { return m_v[n]; }
 
     double & operator[]( const size_t n )
     { return m_v[n]; }
+#endif
 
     iterator begin()
     { return m_v.begin(); }
