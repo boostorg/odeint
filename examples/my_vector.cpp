@@ -24,25 +24,27 @@ public:
     typedef vector::const_iterator const_iterator;
 
 public:
-    my_vector( const size_t N )
+    my_vector( const size_t N = MAX_N )
         : m_v( N )
     { 
-        m_v.reserve( MAX_N );
-    }
-
-    my_vector()
-        : m_v()
-    {
-        m_v.reserve( MAX_N );
+        assert( N <= MAX_N );
     }
 
 // ... [ implement container interface ]
 //]
+#ifdef DEBUG
+    const double & operator[]( const size_t n ) const
+    { return m_v.at(n); }
+
+    double & operator[]( const size_t n )
+    { return m_v.at(n); }
+#else
     const double & operator[]( const size_t n ) const
     { return m_v[n]; }
 
     double & operator[]( const size_t n )
     { return m_v[n]; }
+#endif
 
     iterator begin()
     { return m_v.begin(); }
