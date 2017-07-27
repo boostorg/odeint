@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 echo "Running on ${HOSTNAME}"
 
 out_dir=perf_${HOSTNAME}
@@ -10,7 +10,7 @@ do
     for exe in "roessler" "roessler_simd"
     do
         rm -f ${out_dir}/${exe}_N${N}.times
-        for i in {0..4}
+        for i in `seq 0 4`
         do
             likwid-pin -cS0:0 ./${exe} ${N} ${steps} >> ${out_dir}/${exe}_N${N}.times
         done
