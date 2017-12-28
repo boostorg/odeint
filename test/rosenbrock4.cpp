@@ -127,6 +127,24 @@ BOOST_AUTO_TEST_CASE( test_rosenbrock4_dense_output )
     stepper.calc_state( 0.5 * ( tr.first + tr.second ) , x );
 }
 
+BOOST_AUTO_TEST_CASE( test_rosenbrock4_dense_output_ref )
+{
+    typedef rosenbrock4_dense_output< boost::reference_wrapper< rosenbrock4_controller< rosenbrock4< value_type > > > > stepper_type;
+    typedef rosenbrock4_controller< rosenbrock4< value_type > > controlled_stepper_type;
+    controlled_stepper_type  c_stepper;
+    stepper_type stepper( boost::ref( c_stepper ) );
+
+    typedef stepper_type::state_type state_type;
+    typedef stepper_type::value_type stepper_value_type;
+    typedef stepper_type::deriv_type deriv_type;
+    typedef stepper_type::time_type time_type;
+    state_type x( 2 );
+    x( 0 ) = 0.0 ; x(1) = 1.0;
+    stepper.initialize( x , 0.0 , 0.1 );
+    std::pair< value_type , value_type > tr = stepper.do_step( std::make_pair( sys() , jacobi() ) );
+    stepper.calc_state( 0.5 * ( tr.first + tr.second ) , x );
+}
+
 BOOST_AUTO_TEST_CASE( test_rosenbrock4_copy_dense_output )
 {
     typedef rosenbrock4_controller< rosenbrock4< value_type > > controlled_stepper_type;
