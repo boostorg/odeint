@@ -391,7 +391,7 @@ public:
     }
 
 
-private:
+protected:
 
     template< class StateInOut , class StateVector >
     void extrapolate( size_t k , StateVector &table , const value_matrix &coeff , StateInOut &xest , size_t order_start_index = 0 )
