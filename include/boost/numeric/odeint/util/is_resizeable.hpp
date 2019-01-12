@@ -45,14 +45,14 @@ struct is_resizeable_sfinae : boost::false_type {};
 template< typename Container >
 struct is_resizeable : is_resizeable_sfinae< Container > {};
 
+template <class>
+using voider = void;
 
+template <class Container>
+using try_resize = decltype(std::declval<Container>().resize(1u));
 
-/*
- * specialization for std::vector
- */
-template< class V, class A >
-struct is_resizeable< std::vector< V , A  > > : boost::true_type {};
-
+template <class Container>
+struct is_resizeable_sfinae<Container, voider<try_resize<Container>>> : boost::true_type {};
 
 /*
  * sfinae specialization for fusion sequences
