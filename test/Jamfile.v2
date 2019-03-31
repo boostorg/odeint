@@ -4,6 +4,8 @@
 # Distributed under the Boost Software License, Version 1.0.
 # (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 
+import config : requires ;
+
 # bring in rules for testing
 
 import testing ;
@@ -81,9 +83,8 @@ test-suite "odeint"
     [ run step_size_limitation.cpp ]
     [ run integrate_overflow.cpp ]
     [ compile unwrap_boost_reference.cpp ]
-    [ compile unwrap_reference.cpp : <cxxflags>-std=c++0x : unwrap_reference_C++11 ]
-    [ compile-fail unwrap_reference.cpp : <cxxflags>-std=c++98 : unwrap_reference_C++98 ]
-    [ compile std_array.cpp : <cxxflags>-std=c++0x ]
+    [ compile unwrap_reference.cpp : [ requires cxx11_hdr_functional ] ]
+    [ compile std_array.cpp : [ requires cxx11_hdr_array ] ]
     : 
         <testing.launcher>valgrind
     ;
