@@ -12,5 +12,6 @@
     "maintainers": [
         "Karsten Ahnert <karsten.ahnert -at- gmx.de>",
         "Mario Mulansky <mario.mulansky -at- gmx.net>"
-    ]
+    ],
+    "cxxstd": "03"
 }
