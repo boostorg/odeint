@@ -27,7 +27,7 @@ project
       <link>static
       <toolset>clang:<cxxflags>-Wno-unused-variable
       # <cxxflags>-D_SCL_SECURE_NO_WARNINGS
-      [ requires cxx11_constexpr cxx11_decltype cxx11_sfinae_expr cxx11_template_aliases cxx11_variadic_templates ]
+      [ requires cxx11_noexcept cxx11_rvalue_references sfinae_expr cxx11_auto_declarations cxx11_lambdas cxx11_unified_initialization_syntax cxx11_hdr_tuple cxx11_hdr_initializer_list cxx11_hdr_chrono cxx11_thread_local cxx11_constexpr cxx11_nullptr cxx11_numeric_limits cxx11_decltype cxx11_hdr_array cxx11_hdr_atomic cxx11_hdr_type_traits cxx11_allocator cxx11_explicit_conversion_operators ]
     ;
 
 test-suite "odeint"
@@ -87,8 +87,8 @@ test-suite "odeint"
     [ run step_size_limitation.cpp ]
     [ run integrate_overflow.cpp ]
     [ compile unwrap_boost_reference.cpp ]
-    [ compile unwrap_reference.cpp : <cxxflags>-std=c++0x : unwrap_reference_C++11 ]
-    [ compile std_array.cpp : <cxxflags>-std=c++0x ]
+    [ compile unwrap_reference.cpp ]
+    [ compile std_array.cpp ]
     : 
         <testing.launcher>valgrind
     ;
