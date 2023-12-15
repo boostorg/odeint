@@ -1,12 +1,14 @@
 # Copyright 2012-2013 Karsten Ahnert
 # Copyright 2012-2013 Mario Mulansky
 # Copyright 2013 Pascal Germroth
+# Copyright 2023 Matt Borland
 # Distributed under the Boost Software License, Version 1.0.
 # (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 
 # bring in rules for testing
 
 import testing ;
+import ../../config/checks/config : requires ;
 
 # make sure you are using a new version of boost.build, otherwise the local
 # odeint will not be included properly
@@ -25,14 +27,16 @@ project
       <link>static
       <toolset>clang:<cxxflags>-Wno-unused-variable
       # <cxxflags>-D_SCL_SECURE_NO_WARNINGS
+      [ requires cxx11_constexpr cxx11_decltype cxx11_sfinae_expr cxx11_template_aliases cxx11_variadic_templates ]
     ;
 
 test-suite "odeint"
     :
     [ run euler_stepper.cpp ]
-    [ run runge_kutta_concepts.cpp ]
-    [ run runge_kutta_error_concepts.cpp ]
-    [ run runge_kutta_controlled_concepts.cpp ]
+    # The following 3 tests use Boost.Multiprecision which requires C++14
+    [ run runge_kutta_concepts.cpp : : : [ requires cxx14_decltype_auto cxx14_generic_lambdas cxx14_return_type_deduction cxx14_variable_templates cxx14_constexpr ] ]
+    [ run runge_kutta_error_concepts.cpp : : : [ requires cxx14_decltype_auto cxx14_generic_lambdas cxx14_return_type_deduction cxx14_variable_templates cxx14_constexpr ] ]
+    [ run runge_kutta_controlled_concepts.cpp : : : [ requires cxx14_decltype_auto cxx14_generic_lambdas cxx14_return_type_deduction cxx14_variable_templates cxx14_constexpr ] ]
     [ run resizing.cpp ]
     [ run default_operations.cpp ]
     [ run range_algebra.cpp ]
