@@ -17,14 +17,12 @@ target_link_libraries(boost_numeric_odeint
     Boost::array
     Boost::assert
     Boost::bind
-    Boost::compute
     Boost::config
     Boost::core
     Boost::function
     Boost::fusion
     Boost::iterator
     Boost::math
-    Boost::mpi
     Boost::mpl
     Boost::multi_array
     Boost::numeric_ublas
