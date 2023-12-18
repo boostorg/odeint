@@ -18,10 +18,10 @@
 #ifndef BOOST_NUMERIC_ODEINT_ALGEBRA_MULTI_ARRAY_ALGEBRA_HPP_DEFINED
 #define BOOST_NUMERIC_ODEINT_ALGEBRA_MULTI_ARRAY_ALGEBRA_HPP_DEFINED
 
-#if defined(__clang__)
+#if defined(__clang__) && __clang_major__ >= 10
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-copy-with-user-provided-copy"
-#elif defined(__GNUC__)
+#elif defined(__GNUC__) && __GNUC__ >= 9
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wdeprecated-copy"
 #elif defined(_MSC_VER)
