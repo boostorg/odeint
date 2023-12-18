@@ -13,20 +13,24 @@ use-project boost : $(BOOST_ROOT) ;
 
 project
     : requirements
-      <library>/boost/test//boost_unit_test_framework
       <define>BOOST_ALL_NO_LIB=1
-      <include>../../include
+      # use test library
+      <library>/boost//unit_test_framework
       <link>static
       <toolset>clang:<cxxflags>-Wno-unused-variable
-
-# <cxxflags>-D_SCL_SECURE_NO_WARNINGS
+      # <cxxflags>-D_SCL_SECURE_NO_WARNINGS
+      <warnings>extra
+      <toolset>msvc:<warnings-as-errors>on
+      <toolset>clang:<warnings-as-errors>on
+      <toolset>gcc:<warnings-as-errors>on
+      [ requires cxx11_noexcept cxx11_rvalue_references sfinae_expr cxx11_auto_declarations cxx11_lambdas cxx11_unified_initialization_syntax cxx11_hdr_tuple cxx11_hdr_initializer_list cxx11_hdr_chrono cxx11_thread_local cxx11_constexpr cxx11_nullptr cxx11_numeric_limits cxx11_decltype cxx11_hdr_array cxx11_hdr_atomic cxx11_hdr_type_traits cxx11_allocator cxx11_explicit_conversion_operators ]
     ;
 
 test-suite "odeint"
      :
-     [ run regression_147.cpp ]
-     [ compile regression_149.cpp ]
+     [ run regression_147.cpp : : : [ requires cxx14_decltype_auto cxx14_generic_lambdas cxx14_return_type_deduction cxx14_variable_templates cxx14_constexpr ] ]
+     [ compile regression_149.cpp : [ requires cxx14_decltype_auto cxx14_generic_lambdas cxx14_return_type_deduction cxx14_variable_templates cxx14_constexpr ] ]
      [ run regression_168.cpp : : : <toolset>gcc-mingw:<cxxflags>-Wa,-mbig-obj <debug-symbols>off <toolset>msvc:<cxxflags>/bigobj [ requires cxx14_decltype_auto cxx14_generic_lambdas cxx14_return_type_deduction cxx14_variable_templates cxx14_constexpr ] ]
-     [ run regression_189.cpp ]
+     [ run regression_189.cpp : : : [ requires cxx14_decltype_auto cxx14_generic_lambdas cxx14_return_type_deduction cxx14_variable_templates cxx14_constexpr ] ]
      : <testing.launcher>valgrind
      ;
