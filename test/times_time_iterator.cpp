@@ -188,7 +188,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE( copy_algorithm_negative_time_step , Stepper , dum
     typedef times_time_iterator< Stepper , empty_system , state_type , time_iterator_type > stepper_iterator;
     state_type x = {{ 1.0 }};
     result_vector res;
-    boost::array<double,4> neg_times = {{ 0.0 , -0.1, -0.2, -0.3 }};
+    std::array<double,4> neg_times = {{ 0.0 , -0.1, -0.2, -0.3 }};
     stepper_iterator first( Stepper() , empty_system() , x , neg_times.begin() , neg_times.end() , -0.1 );
     stepper_iterator last( Stepper() , empty_system() , x );
 
