@@ -304,9 +304,9 @@ struct state_wrapper< boost::numeric::ublas::permutation_matrix< T , A > > // wi
 
 } } }
 
-#if defined(__clang__)
+#if defined(__clang__) && __clang_major__ >= 10
 #pragma clang diagnostic pop
-#elif defined(__GNUC__)
+#elif defined(__GNUC__) && __GNUC__ >= 9
 #pragma GCC diagnostic pop
 #elif defined(_MSC_VER)
 #pragma warning(pop)

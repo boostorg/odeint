@@ -227,9 +227,9 @@ BOOST_AUTO_TEST_CASE_TEMPLATE( stepper_test2 , Stepper, stepper_combinations2 )
 
 BOOST_AUTO_TEST_SUITE_END()
 
-#if defined(__clang__)
+#if defined(__clang__) && __clang_major__ >= 10
 #pragma clang diagnostic pop
-#elif defined(__GNUC__)
+#elif defined(__GNUC__) && __GNUC__ >= 9
 #pragma GCC diagnostic pop
 #elif defined(_MSC_VER)
 #pragma warning(pop)
