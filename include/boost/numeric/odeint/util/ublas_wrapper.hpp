@@ -18,6 +18,17 @@
 #ifndef BOOST_NUMERIC_ODEINT_UTIL_UBLAS_WRAPPER_HPP_INCLUDED
 #define BOOST_NUMERIC_ODEINT_UTIL_UBLAS_WRAPPER_HPP_INCLUDED
 
+// Need this PR to be merged to actually fix the issue: https://github.com/boostorg/ublas/pull/153
+#if defined(__clang__)
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-copy-with-user-provided-copy"
+#elif defined(__GNUC__)
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-copy-with-user-provided-copy"
+#elif defined(_MSC_VER)
+#pragma warning(push)
+#pragma warning(disable : 5267)
+#endif
 
 #include <boost/type_traits/integral_constant.hpp>
 #include <boost/numeric/ublas/vector.hpp>
@@ -293,5 +304,12 @@ struct state_wrapper< boost::numeric::ublas::permutation_matrix< T , A > > // wi
 
 } } }
 
+#if defined(__clang__)
+#pragma clang diagnostic pop
+#elif defined(__GNUC__)
+#pragma GCC diagnostic pop
+#elif defined(_MSC_VER)
+#pragma warning(pop)
+#endif
 
 #endif // BOOST_NUMERIC_ODEINT_UTIL_UBLAS_WRAPPER_HPP_INCLUDED
