@@ -69,8 +69,8 @@ BOOST_AUTO_TEST_CASE( regression_189 )
             std::cout << phoenix::arg_names::arg2 << " " << phoenix::arg_names::arg1[0] << "\n" );
     num_of_steps_expected = 1531;
 
-    // Apple ARM arch takes one additional step
-    #if defined(__aarch64__) && defined(__APPLE__)
+    // Apple ARM arch takes one additional step, but only with clang
+    #if defined(__aarch64__) && defined(__APPLE__) && defined(__clang__)
     ++num_of_steps_expected;
     #endif
 
