@@ -28,7 +28,7 @@
 #include <boost/mpl/vector.hpp>
 
 #include <boost/test/unit_test.hpp>
-#include <boost/test/floating_point_comparison.hpp>
+#include <boost/test/tools/floating_point_comparison.hpp>
 
 #include <boost/numeric/odeint/iterator/n_step_time_iterator.hpp>
 #include "dummy_steppers.hpp"

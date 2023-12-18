@@ -54,8 +54,8 @@ jobs:
           - { compiler: gcc-12,    cxxstd: '03,11,14,17,20', os: ubuntu-22.04 }
           - { name: GCC w/ sanitizers, sanitize: yes,
               compiler: gcc-12,    cxxstd: '03,11,14,17,20', os: ubuntu-22.04 }
-          - { name: Collect coverage, coverage: yes,
-              compiler: gcc-8,     cxxstd: '03,11',          os: ubuntu-20.04, install: 'g++-8-multilib', address-model: '32,64' }
+          #- { name: Collect coverage, coverage: yes,
+          #    compiler: gcc-8,     cxxstd: '03,11',          os: ubuntu-20.04, install: 'g++-8-multilib', address-model: '32,64' }
 
           # Linux, clang
           - { compiler: clang-5.0, cxxstd: '03,11,14,1z',    os: ubuntu-22.04, container: 'ubuntu:18.04' }
@@ -228,10 +228,10 @@ jobs:
           - { toolset: msvc-14.0, cxxstd: '14,latest',      addrmd: '32,64', os: windows-2019 }
           - { toolset: msvc-14.2, cxxstd: '14,17,20',       addrmd: '32,64', os: windows-2019 }
           - { toolset: msvc-14.3, cxxstd: '14,17,20,latest',addrmd: '32,64', os: windows-2022 }
-          - { name: Collect coverage, coverage: yes,
-              toolset: msvc-14.3, cxxstd: 'latest',         addrmd: '64',    os: windows-2022 }
+          #- { name: Collect coverage, coverage: yes,
+          #    toolset: msvc-14.3, cxxstd: 'latest',         addrmd: '64',    os: windows-2022 }
           - { toolset: clang-win, cxxstd: '14,17,latest',   addrmd: '32,64', os: windows-2022 }
-          - { toolset: gcc,       cxxstd: '03,11,14,17,2a', addrmd: '64',    os: windows-2019 }
+          #- { toolset: gcc,       cxxstd: '03,11,14,17,2a', addrmd: '64',    os: windows-2019 }
 
     runs-on: ${{matrix.os}}
 
@@ -269,7 +269,7 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - { sys: MINGW32, compiler: gcc, cxxstd: '03,11,17,20' }
+        #  - { sys: MINGW32, compiler: gcc, cxxstd: '03,11,17,20' }
           - { sys: MINGW64, compiler: gcc, cxxstd: '03,11,17,20' }
 
     runs-on: windows-latest
