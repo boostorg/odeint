@@ -89,7 +89,7 @@ public:
     const static size_t m_k_max = 8;
 
 // Claims m_error_checker will be init after m_max_dt
-#if defined(__clang__)
+#if defined(__clang__) && __clang_major__ >= 10
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wreorder-ctor"
 #elif defined(__GNUC__)
@@ -135,7 +135,7 @@ public:
         reset();
     }
 
-#if defined(__clang__)
+#if defined(__clang__) && __clang_major__ >= 10
 #pragma clang diagnostic pop
 #elif defined(__GNUC__)
 #pragma GCC diagnostic pop
