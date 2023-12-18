@@ -16,6 +16,18 @@
 
 #define BOOST_TEST_MODULE odeint_integrate_functions_implicit
 
+// Need this PR to be merged to actually fix the issue: https://github.com/boostorg/ublas/pull/153
+#if defined(__clang__)
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-copy-with-user-provided-copy"
+#elif defined(__GNUC__)
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-copy"
+#elif defined(_MSC_VER)
+#pragma warning(push)
+#pragma warning(disable : 5267)
+#endif
+
 #include <vector>
 #include <cmath>
 #include <iostream>
@@ -231,3 +243,12 @@ BOOST_AUTO_TEST_CASE_TEMPLATE( integrate_n_steps_test_case , Stepper, simple_ste
 }
 
 BOOST_AUTO_TEST_SUITE_END()
+
+#if defined(__clang__)
+#pragma clang diagnostic pop
+#elif defined(__GNUC__)
+#pragma GCC diagnostic pop
+#elif defined(_MSC_VER)
+#pragma warning(pop)
+#endif
+

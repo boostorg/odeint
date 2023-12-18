@@ -27,7 +27,7 @@ using namespace boost::unit_test;
 
 typedef std::array<double, 3> state_type;
 
-void rhs(const state_type &x, state_type &dxdt, const double t)
+void rhs(const state_type &/*x*/, state_type &/*dxdt*/, const double /*t*/)
 {
 }
 

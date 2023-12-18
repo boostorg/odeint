@@ -71,7 +71,7 @@ template< class Stepper , class System >
 void check_controlled_stepper_concept( Stepper &stepper , System system , typename Stepper::state_type &x )
 {
     typedef Stepper stepper_type;
-    typedef typename stepper_type::deriv_type container_type;
+    //typedef typename stepper_type::deriv_type container_type;
     //typedef typename stepper_type::order_type order_type;  controlled_error_stepper don't necessarily have a order (burlish-stoer)
     typedef typename stepper_type::time_type time_type;
 

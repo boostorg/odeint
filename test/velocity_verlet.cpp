@@ -74,7 +74,7 @@ struct velocity_verlet_fixture
 struct ode
 {
     template< class CoorIn , class MomentumIn , class AccelerationOut , class Time >
-    void operator()( const CoorIn &q , const MomentumIn &p , AccelerationOut &a , Time t ) const
+    void operator()( const CoorIn &q , const MomentumIn &p , AccelerationOut &a , Time /*t*/ ) const
     {
         a[0] = -q[0] - p[0];
         a[1] = -q[1] - p[1];
@@ -84,7 +84,7 @@ struct ode
 
 struct ode_units
 {
-    void operator()( coor_vector const &q , velocity_vector const &p , accelartion_vector &a , time_type t ) const
+    void operator()( coor_vector const &q , velocity_vector const &p , accelartion_vector &a , time_type /*t*/ ) const
     {
         const units::quantity< si::frequency , value_type > omega = 1.0 * si::hertz;
         const units::quantity< si::frequency , value_type > friction = 0.001 * si::hertz;

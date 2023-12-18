@@ -15,12 +15,21 @@
     #pragma warning(disable:4996)
 #endif
 
+#if defined(__clang__)
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-copy-with-user-provided-copy"
+#elif defined(__GNUC__)
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-copy"
+#elif defined(_MSC_VER)
+#pragma warning(push)
+#pragma warning(disable : 5267)
+#endif
+
 #define BOOST_TEST_MODULE order_quadrature_formula
 
 #include <iostream>
 #include <cmath>
-
-#include "boost/format.hpp"
 
 #include <boost/test/unit_test.hpp>
 
@@ -49,7 +58,7 @@ struct monomial
 
     monomial(int p = 0) : power( p ){};
 
-    void operator()( const state_type &x , state_type &dxdt , const time_type t )
+    void operator()( const state_type &/*x*/ , state_type & dxdt , const time_type t )
     {
         dxdt = ( 1.0 + power ) * pow( t, power );
     }
@@ -193,3 +202,11 @@ BOOST_AUTO_TEST_CASE_TEMPLATE( adams_bashforth_moultion_test , Stepper, abm_step
 }
 
 BOOST_AUTO_TEST_SUITE_END()
+
+#if defined(__clang__)
+#pragma clang diagnostic pop
+#elif defined(__GNUC__)
+#pragma GCC diagnostic pop
+#elif defined(_MSC_VER)
+#pragma warning(pop)
+#endif

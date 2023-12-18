@@ -46,7 +46,7 @@ namespace mpl = boost::mpl;
 struct constant_system
 {
     template< typename T >
-    void operator()( const T &x , T &dxdt , const T t ) const
+    void operator()( const T &/*x*/ , T &dxdt , const T /*t*/ ) const
     { dxdt = 1.0; }
 };
 

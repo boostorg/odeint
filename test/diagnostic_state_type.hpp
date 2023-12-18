@@ -91,7 +91,7 @@ namespace odeint {
     template< size_t N , size_t M  >
     struct same_size_impl< diagnostic_type< N > , diagnostic_type< M > >
     {
-        static bool same_size( const diagnostic_type< N > &x1 , const diagnostic_type< M > &x2 )
+        static bool same_size( const diagnostic_type< N > &/*x1*/ , const diagnostic_type< M > &/*x2*/ )
         {
             return false;
         }
@@ -100,7 +100,7 @@ namespace odeint {
     template< size_t N , class State1  >
     struct same_size_impl< diagnostic_type< N > , State1 >
     {
-        static bool same_size( const diagnostic_type< N > &x1 , const State1 &x2 )
+        static bool same_size( const diagnostic_type< N > &/*x1*/ , const State1 &/*x2*/ )
         {
             return false;
         }
@@ -109,7 +109,7 @@ namespace odeint {
     template< class State1 , size_t N >
     struct same_size_impl< State1 , diagnostic_type< N > >
     {
-        static bool same_size( const State1 &x1 , const diagnostic_type< N > &x2 )
+        static bool same_size( const State1 &/*x1*/ , const diagnostic_type< N > &/*x2*/ )
         {
             return false;
         }
@@ -120,7 +120,7 @@ namespace odeint {
     template< size_t N , class StateIn >
     struct resize_impl< diagnostic_type< N > , StateIn >
     {
-        static void resize( diagnostic_type< N > &x1 , const StateIn &x2 )
+        static void resize( diagnostic_type< N > &/*x1*/ , const StateIn &/*x2*/ )
         {
             counter< N >::adjust_size_count()++;
         }
@@ -152,7 +152,7 @@ namespace odeint {
             counter< N >::copy_count()++;
         }
 
-        state_wrapper_type& operator=( const state_wrapper_type &x )
+        state_wrapper_type& operator=( const state_wrapper_type &/*x*/ )
         {
             counter< N >::copy_count()++;
             return *this;

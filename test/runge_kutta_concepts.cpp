@@ -21,6 +21,18 @@
     #pragma warning(disable:4996)
 #endif
 
+// Need this PR to be merged to actually fix the issue: https://github.com/boostorg/ublas/pull/153
+#if defined(__clang__)
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-copy-with-user-provided-copy"
+#elif defined(__GNUC__)
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-copy"
+#elif defined(_MSC_VER)
+#pragma warning(push)
+#pragma warning(disable : 5267)
+#endif
+
 #define BOOST_TEST_MODULE odeint_runge_kutta_concepts
 
 #include <vector>
@@ -34,7 +46,7 @@
 #include <boost/test/unit_test.hpp>
 
 #include <boost/ref.hpp>
-#include <boost/bind.hpp>
+#include <boost/bind/bind.hpp>
 #include <boost/utility.hpp>
 #include <boost/type_traits/add_reference.hpp>
 
@@ -64,6 +76,7 @@ using std::vector;
 
 using namespace boost::unit_test;
 using namespace boost::numeric::odeint;
+using namespace boost::placeholders;
 namespace mpl = boost::mpl;
 
 const double result = 2.2;
@@ -74,8 +87,6 @@ template< class Stepper , class System >
 void check_stepper_concept( Stepper &stepper , System system , typename Stepper::state_type &x )
 {
     typedef Stepper stepper_type;
-    typedef typename stepper_type::deriv_type container_type;
-    typedef typename stepper_type::order_type order_type;
     typedef typename stepper_type::time_type time_type;
 
     stepper.do_step( system , x , static_cast<time_type>(0.0) , static_cast<time_type>(0.1) );
@@ -215,3 +226,11 @@ BOOST_AUTO_TEST_CASE_TEMPLATE( stepper_test2 , Stepper, stepper_combinations2 )
 
 
 BOOST_AUTO_TEST_SUITE_END()
+
+#if defined(__clang__)
+#pragma clang diagnostic pop
+#elif defined(__GNUC__)
+#pragma GCC diagnostic pop
+#elif defined(_MSC_VER)
+#pragma warning(pop)
+#endif

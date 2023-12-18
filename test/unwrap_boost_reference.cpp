@@ -22,9 +22,8 @@
 using namespace boost::unit_test;
 
 template< typename T >
-void func( T t )
+void func( T )
 {
-    typedef typename boost::numeric::odeint::unwrap_reference< T >::type type;
 }
 
 BOOST_AUTO_TEST_SUITE( unwrap_boost_reference_test )

@@ -71,7 +71,7 @@ struct oscillator
 
     oscillator( const frequency_type &omega = 1.0 * si::hertz ) : m_omega( omega ) { }
 
-    void operator()( const state_type &x , deriv_type &dxdt , time_type t ) const
+    void operator()( const state_type &x , deriv_type &dxdt , time_type /*t*/ ) const
     {
         fusion::at_c< 0 >( dxdt ) = fusion::at_c< 1 >( x );
         fusion::at_c< 1 >( dxdt ) = - m_omega * m_omega * fusion::at_c< 0 >( x );

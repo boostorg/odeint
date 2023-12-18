@@ -37,7 +37,7 @@ typedef boost::numeric::ublas::matrix< value_type > matrix_type;
 // harmonic oscillator, analytic solution x[0] = sin( t )
 struct sys
 {
-    void operator()( const state_type &x , state_type &dxdt , const value_type &t ) const
+    void operator()( const state_type &x , state_type &dxdt , const value_type &/*t*/ ) const
     {
         dxdt( 0 ) = x( 1 );
         dxdt( 1 ) = -x( 0 );
@@ -46,7 +46,7 @@ struct sys
 
 struct jacobi
 {
-    void operator()( const state_type &x , matrix_type &jacobi , const value_type &t , state_type &dfdt ) const
+    void operator()( const state_type &/*x*/ , matrix_type &jacobi , const value_type &/*t*/ , state_type &dfdt ) const
     {
         jacobi( 0 , 0 ) = 0;
         jacobi( 0 , 1 ) = 1;

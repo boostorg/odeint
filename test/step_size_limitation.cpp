@@ -34,7 +34,7 @@ typedef std::vector< value_type > state_type;
  ***********************************************
  */
 
-void damped_osc( const state_type &x , state_type &dxdt , const value_type t )
+void damped_osc( const state_type &x , state_type &dxdt , const value_type /*t*/ )
 {
     const value_type gam( 0.1);
 
@@ -51,7 +51,7 @@ struct push_back_time
     :  m_times( times ) { }
 
     template<typename State>
-    void operator()( const State &x , double t )
+    void operator()( const State &/*x*/ , double t )
     {
         m_times.push_back( t );
     }
@@ -189,7 +189,7 @@ typedef boost::numeric::ublas::matrix< value_type > matrix_type;
 // harmonic oscillator, analytic solution x[0] = sin( t )
 struct osc_rhs
 {
-    void operator()( const vector_type &x , vector_type &dxdt , const value_type &t ) const
+    void operator()( const vector_type &x , vector_type &dxdt , const value_type &/*t*/ ) const
     {
         dxdt( 0 ) = x( 1 );
         dxdt( 1 ) = -x( 0 );
@@ -198,7 +198,7 @@ struct osc_rhs
 
 struct osc_jacobi
 {
-    void operator()( const vector_type &x , matrix_type &jacobi , const value_type &t , vector_type &dfdt ) const
+    void operator()( const vector_type &/*x*/ , matrix_type &jacobi , const value_type &/*t*/ , vector_type &dfdt ) const
     {
         jacobi( 0 , 0 ) = 0;
         jacobi( 0 , 1 ) = 1;
