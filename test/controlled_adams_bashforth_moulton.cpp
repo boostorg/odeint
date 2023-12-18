@@ -16,7 +16,7 @@ using namespace boost::numeric::odeint;
 struct const_sys
 {
     template< class State , class Deriv , class Value >
-    void operator()( const State &x , Deriv &dxdt , const Value &dt ) const
+    void operator()( const State &/*x*/ , Deriv &dxdt , const Value &/*dt*/ ) const
     {
         dxdt[0] = 1;
     }

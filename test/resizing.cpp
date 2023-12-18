@@ -26,7 +26,7 @@
 #include <cmath>
 
 #include <boost/array.hpp>
-#include <boost/bind.hpp>
+#include <boost/bind/bind.hpp>
 #include <boost/utility.hpp>
 #include <boost/type_traits/integral_constant.hpp>
 
@@ -48,6 +48,7 @@
 
 using namespace boost::unit_test;
 using namespace boost::numeric::odeint;
+using namespace boost::placeholders;
 
 namespace mpl = boost::mpl;
 
@@ -56,7 +57,7 @@ namespace mpl = boost::mpl;
 
 
 
-void constant_system( const test_array_type &x , test_array_type &dxdt , double t ) { dxdt[0] = 1.0; }
+void constant_system( const test_array_type & , test_array_type &dxdt , double ) { dxdt[0] = 1.0; }
 
 
 BOOST_AUTO_TEST_SUITE( check_resize_test )

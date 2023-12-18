@@ -88,7 +88,6 @@ BOOST_AUTO_TEST_CASE( test_fusion_quantity_sequence )
     namespace si = boost::units::si;
 
     typedef double value_type;
-    typedef units::quantity< si::time , value_type > time_type;
     typedef units::quantity< si::length , value_type > length_type;
     typedef units::quantity< si::velocity , value_type > velocity_type;
     typedef boost::fusion::vector< length_type , velocity_type > state_type;

@@ -59,7 +59,7 @@ typedef boost::numeric::ublas::matrix< value_type > matrix_type;
 
 struct sys
 {
-    void operator()( const state_type &x , state_type &dxdt , const value_type &t ) const
+    void operator()( const state_type &x , state_type &dxdt , const value_type &/*t*/ ) const
     {
         dxdt( 0 ) = x( 0 ) + 2 * x( 1 );
         dxdt( 1 ) = x( 1 );
@@ -68,7 +68,7 @@ struct sys
 
 struct jacobi
 {
-    void operator()( const state_type &x , matrix_type &jacobi , const value_type &t , state_type &dfdt ) const
+    void operator()( const state_type &/*x*/ , matrix_type &jacobi , const value_type &/*t*/ , state_type &dfdt ) const
     {
         jacobi( 0 , 0 ) = 1;
         jacobi( 0 , 1 ) = 2;
@@ -86,7 +86,7 @@ struct push_back_time
     push_back_time( std::vector< double > &times )
     :  m_times( times ) { }
 
-    void operator()( const state_type &x , double t )
+    void operator()( const state_type &/*x*/ , double t )
     {
         m_times.push_back( t );
     }

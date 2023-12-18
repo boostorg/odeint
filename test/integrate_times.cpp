@@ -67,7 +67,7 @@ struct push_back_time
     push_back_time( std::vector< double > &times )
     :  m_times( times ) { }
 
-    void operator()( const state_type &x , double t )
+    void operator()( const state_type &/*x*/ , double t )
     {
         m_times.push_back( t );
     }

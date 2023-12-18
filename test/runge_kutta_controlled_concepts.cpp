@@ -34,7 +34,7 @@
 #include <boost/test/unit_test.hpp>
 
 #include <boost/ref.hpp>
-#include <boost/bind.hpp>
+#include <boost/bind/bind.hpp>
 #include <boost/utility.hpp>
 #include <boost/type_traits/add_reference.hpp>
 
@@ -60,6 +60,7 @@ using std::vector;
 
 using namespace boost::unit_test;
 using namespace boost::numeric::odeint;
+using namespace boost::placeholders;
 namespace mpl = boost::mpl;
 
 const double result = 2.2; // two steps

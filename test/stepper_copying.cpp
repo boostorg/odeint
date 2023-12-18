@@ -148,7 +148,7 @@ namespace boost { namespace numeric { namespace odeint {
                     copy_count++;
                 }
 
-                state_wrapper_type& operator=( const state_wrapper_type &x )
+                state_wrapper_type& operator=( const state_wrapper_type & /*x*/ )
                 {
                     copy_count++;
                     return *this;
@@ -187,7 +187,7 @@ namespace boost { namespace numeric { namespace odeint {
                     copy2_count++;
                 }
 
-                state_wrapper_type& operator=( const state_wrapper_type &x )
+                state_wrapper_type& operator=( const state_wrapper_type & /*x*/ )
                 {
                     copy2_count++;
                     return *this;

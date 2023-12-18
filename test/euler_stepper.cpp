@@ -68,7 +68,7 @@ typedef my_vec state_type;
 /* use functors, because functions don't work with msvc 10, I guess this is a bug */
 struct sys
 {
-    void operator()( const state_type &x , state_type &dxdt , const value_type t ) const
+    void operator()( const state_type &x , state_type &dxdt , const value_type ) const
     {
         std::cout << "sys start " << dxdt.size() << std::endl;
         dxdt[0] = x[0] + 2 * x[1];

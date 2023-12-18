@@ -45,7 +45,7 @@ typedef boost::numeric::ublas::matrix< value_type > matrix_type;
 
 struct sys
 {
-    void operator()( const state_type &x , state_type &dxdt , const value_type &t ) const
+    void operator()( const state_type &x , state_type &dxdt , const value_type &/*t*/ ) const
     {
         dxdt( 0 ) = x( 0 ) + 2 * x( 1 );
         dxdt( 1 ) = x( 1 );
@@ -54,7 +54,7 @@ struct sys
 
 struct jacobi
 {
-    void operator()( const state_type &x , matrix_type &jacobi , const value_type &t , state_type &dfdt ) const
+    void operator()( const state_type &/*x*/ , matrix_type &jacobi , const value_type &/*t*/ , state_type &dfdt ) const
     {
         jacobi( 0 , 0 ) = 1;
         jacobi( 0 , 1 ) = 2;
@@ -73,9 +73,6 @@ BOOST_AUTO_TEST_CASE( test_rosenbrock4_stepper )
     stepper_type stepper;
 
     typedef stepper_type::state_type state_type;
-    typedef stepper_type::value_type stepper_value_type;
-    typedef stepper_type::deriv_type deriv_type;
-    typedef stepper_type::time_type time_type;
 
     state_type x( 2 ) , xerr( 2 );
     x(0) = 0.0; x(1) = 1.0;
@@ -101,9 +98,6 @@ BOOST_AUTO_TEST_CASE( test_rosenbrock4_controller )
     stepper_type stepper;
 
     typedef stepper_type::state_type state_type;
-    typedef stepper_type::value_type stepper_value_type;
-    typedef stepper_type::deriv_type deriv_type;
-    typedef stepper_type::time_type time_type;
 
     state_type x( 2 );
     x( 0 ) = 0.0 ; x(1) = 1.0;
@@ -120,9 +114,7 @@ BOOST_AUTO_TEST_CASE( test_rosenbrock4_dense_output )
     stepper_type stepper( c_stepper );
 
     typedef stepper_type::state_type state_type;
-    typedef stepper_type::value_type stepper_value_type;
-    typedef stepper_type::deriv_type deriv_type;
-    typedef stepper_type::time_type time_type;
+
     state_type x( 2 );
     x( 0 ) = 0.0 ; x(1) = 1.0;
     stepper.initialize( x , 0.0 , 0.1 );

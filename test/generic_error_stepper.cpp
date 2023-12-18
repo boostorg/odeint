@@ -42,7 +42,7 @@ namespace fusion = boost::fusion;
 typedef double value_type;
 typedef boost::array< value_type , 2 > state_type;
 
-void sys( const state_type &x , state_type &dxdt , const value_type &t )
+void sys( const state_type &x , state_type &dxdt , const value_type &/*t*/ )
 {
     dxdt[ 0 ] = x[ 0 ] + 2 * x[ 1 ];
     dxdt[ 1 ] = x[ 1 ];
@@ -81,9 +81,6 @@ BOOST_AUTO_TEST_CASE( test_generic_error_stepper )
     rk54_ck_type rk54_ck = rk54_ck_;
 
     typedef error_rk_generic_type::state_type state_type;
-    typedef error_rk_generic_type::value_type stepper_value_type;
-    typedef error_rk_generic_type::deriv_type deriv_type;
-    typedef error_rk_generic_type::time_type time_type;
 
     state_type x = {{ 0.0 , 1.0 }};
     state_type y = x;
