@@ -95,6 +95,17 @@ public:
     const static size_t m_k_max = 8;
 
 
+// Claims m_error_checker will be init after m_max_dt
+#if defined(__clang__)
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wreorder-ctor"
+#elif defined(__GNUC__)
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wreorder-ctor"
+#elif defined(_MSC_VER)
+#pragma warning(push)
+#pragma warning(disable : 5038)
+#endif
 
     bulirsch_stoer_dense_out(
         value_type eps_abs = 1E-6 , value_type eps_rel = 1E-6 ,
@@ -154,6 +165,15 @@ public:
             num += (i+1)%2;
         }
     }
+
+#if defined(__clang__)
+#pragma clang diagnostic pop
+#elif defined(__GNUC__)
+#pragma GCC diagnostic pop
+#elif defined(_MSC_VER)
+#pragma warning(pop)
+#endif
+
 
     template< class System , class StateIn , class DerivIn , class StateOut , class DerivOut >
     controlled_step_result try_step( System system , const StateIn &in , const DerivIn &dxdt , time_type &t , StateOut &out , DerivOut &dxdt_new , time_type &dt )
