@@ -94,7 +94,7 @@ public:
 #pragma clang diagnostic ignored "-Wreorder-ctor"
 #elif defined(__GNUC__)
 #pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wreorder-ctor"
+#pragma GCC diagnostic ignored "-Wreorder"
 #elif defined(_MSC_VER)
 #pragma warning(push)
 #pragma warning(disable : 5038)

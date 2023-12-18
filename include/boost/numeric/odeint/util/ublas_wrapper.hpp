@@ -24,7 +24,7 @@
 #pragma clang diagnostic ignored "-Wdeprecated-copy-with-user-provided-copy"
 #elif defined(__GNUC__)
 #pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-copy-with-user-provided-copy"
+#pragma GCC diagnostic ignored "-Wdeprecated-copy"
 #elif defined(_MSC_VER)
 #pragma warning(push)
 #pragma warning(disable : 5267)

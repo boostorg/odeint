@@ -18,6 +18,16 @@
 #ifndef BOOST_NUMERIC_ODEINT_ALGEBRA_MULTI_ARRAY_ALGEBRA_HPP_DEFINED
 #define BOOST_NUMERIC_ODEINT_ALGEBRA_MULTI_ARRAY_ALGEBRA_HPP_DEFINED
 
+#if defined(__clang__)
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-copy-with-user-provided-copy"
+#elif defined(__GNUC__)
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-copy"
+#elif defined(_MSC_VER)
+#pragma warning(push)
+#pragma warning(disable : 5267)
+#endif
 
 #include <boost/multi_array.hpp>
 
@@ -142,5 +152,12 @@ struct algebra_dispatcher< boost::multi_array< T , N > >
 } // namespace numeric
 } // namespace boost
 
+#if defined(__clang__)
+#pragma clang diagnostic pop
+#elif defined(__GNUC__)
+#pragma GCC diagnostic pop
+#elif defined(_MSC_VER)
+#pragma warning(pop)
+#endif
 
 #endif // BOOST_NUMERIC_ODEINT_ALGEBRA_MULTI_ARRAY_ALGEBRA_HPP_DEFINED
