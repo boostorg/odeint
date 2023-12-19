@@ -22,6 +22,21 @@
 #include <complex>
 #include <boost/type_traits/is_floating_point.hpp>
 
+#if defined(__clang__) && __clang_major__ >= 13
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-copy-with-user-provided-copy"
+#elif defined(__clang__) && __clang_major__ >= 10
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-copy"
+#elif defined(__GNUC__) && __GNUC__ >= 9
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-copy"
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+#elif defined(_MSC_VER)
+#pragma warning(push)
+#pragma warning(disable : 5267)
+#endif
+
 #include <boost/numeric/ublas/vector.hpp>
 #include <boost/numeric/ublas/matrix.hpp>
 
@@ -103,6 +118,15 @@ struct algebra_dispatcher< std::array< T , N > >
 };
 
 } } }
+
+#if defined(__clang__) && __clang_major__ >= 10
+#pragma clang diagnostic pop
+#elif defined(__GNUC__) && __GNUC__ >= 9
+#pragma GCC diagnostic pop
+#elif defined(_MSC_VER)
+#pragma warning(pop)
+#endif
+
 
 #endif
 
