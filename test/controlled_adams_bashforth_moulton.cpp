@@ -29,15 +29,15 @@ BOOST_AUTO_TEST_SUITE( controlled_adams_bashforth_moulton_test )
 
 BOOST_AUTO_TEST_CASE( test_instantiation )
 {
-    controlled_adams_bashforth_moulton<adaptive_adams_bashforth_moulton<1, state_type> > s1;
-    controlled_adams_bashforth_moulton<adaptive_adams_bashforth_moulton<2, state_type> > s2;
-    controlled_adams_bashforth_moulton<adaptive_adams_bashforth_moulton<3, state_type> > s3;
-    controlled_adams_bashforth_moulton<adaptive_adams_bashforth_moulton<4, state_type> > s4;
-    controlled_adams_bashforth_moulton<adaptive_adams_bashforth_moulton<5, state_type> > s5;
-    controlled_adams_bashforth_moulton<adaptive_adams_bashforth_moulton<6, state_type> > s6;
-    controlled_adams_bashforth_moulton<adaptive_adams_bashforth_moulton<7, state_type> > s7;
-    controlled_adams_bashforth_moulton<adaptive_adams_bashforth_moulton<8, state_type> > s8;
-    controlled_adams_bashforth_moulton<adaptive_adams_bashforth_moulton<9, state_type> > s9;
+    controlled_adams_bashforth_moulton<adaptive_adams_bashforth_moulton<1, state_type> > s1 {};
+    controlled_adams_bashforth_moulton<adaptive_adams_bashforth_moulton<2, state_type> > s2 {};
+    controlled_adams_bashforth_moulton<adaptive_adams_bashforth_moulton<3, state_type> > s3 {};
+    controlled_adams_bashforth_moulton<adaptive_adams_bashforth_moulton<4, state_type> > s4 {};
+    controlled_adams_bashforth_moulton<adaptive_adams_bashforth_moulton<5, state_type> > s5 {};
+    controlled_adams_bashforth_moulton<adaptive_adams_bashforth_moulton<6, state_type> > s6 {};
+    controlled_adams_bashforth_moulton<adaptive_adams_bashforth_moulton<7, state_type> > s7 {};
+    controlled_adams_bashforth_moulton<adaptive_adams_bashforth_moulton<8, state_type> > s8 {};
+    controlled_adams_bashforth_moulton<adaptive_adams_bashforth_moulton<9, state_type> > s9 {};
 
     state_type x = {{ 10.0 }};
     value_type t = 0.0 , dt = 0.01;

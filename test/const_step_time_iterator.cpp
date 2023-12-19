@@ -78,6 +78,11 @@ BOOST_AUTO_TEST_CASE_TEMPLATE( assignment_stepper_iterator , Stepper , dummy_ste
     BOOST_CHECK( iter1.same( iter2 ) );
 }
 
+#if defined(__GNUC__) && __GNUC__ >= 5
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+#endif
+
 BOOST_AUTO_TEST_CASE_TEMPLATE( stepper_iterator_factory , Stepper , dummy_steppers )
 {
     Stepper stepper;
@@ -91,6 +96,10 @@ BOOST_AUTO_TEST_CASE_TEMPLATE( stepper_iterator_factory , Stepper , dummy_steppe
 
     BOOST_CHECK_CLOSE( x[0] , 3.5 , 1.0e-13 );
 }
+
+#if defined(__GNUC__) && __GNUC__ >= 5
+#pragma GCC diagnostic pop
+#endif
 
 BOOST_AUTO_TEST_CASE_TEMPLATE( stepper_range , Stepper , dummy_steppers )
 {

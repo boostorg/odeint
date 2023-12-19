@@ -163,7 +163,7 @@ struct perform_controlled_stepper_test< ControlledStepper , boost::array<T,1> >
         using std::abs;
         array_type x;
         x[0] = 2.0;
-        ControlledStepper controlled_stepper;
+        ControlledStepper controlled_stepper {};
         constant_system_functor_standard sys;
 #ifndef _MSC_VER
         // dont run this for MSVC due to compiler bug 697006

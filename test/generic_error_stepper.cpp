@@ -72,7 +72,7 @@ BOOST_AUTO_TEST_CASE( test_generic_error_stepper )
     error_rk_generic_type rk_generic_( a , b , b2 , c );
     error_rk_generic_type rk_generic = rk_generic_;
 
-    error_rk54_ck_generic_type rk54_ck_generic_;
+    error_rk54_ck_generic_type rk54_ck_generic_ {};
     error_rk54_ck_generic_type rk54_ck_generic = rk54_ck_generic_;
 
     //std::cout << stepper;

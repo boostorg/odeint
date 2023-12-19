@@ -75,6 +75,11 @@ struct push_back_time
 
 BOOST_AUTO_TEST_SUITE( integrate_times_test )
 
+#if defined(__GNUC__) && __GNUC__ >= 5
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+#endif
+
 BOOST_AUTO_TEST_CASE( test_integrate_times )
 {
 
@@ -144,6 +149,9 @@ BOOST_AUTO_TEST_CASE( test_integrate_times )
 
 }
 
+#if defined(__GNUC__) && __GNUC__ >= 5
+#pragma GCC diagnostic pop
+#endif
 
 BOOST_AUTO_TEST_CASE( test_integrate_times_ranges )
 {

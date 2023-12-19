@@ -20,6 +20,12 @@
     #pragma warning(disable:4996)
 #endif
 
+// Stems from Boost.Multiprecision
+#if defined(__GNUC__) && __GNUC__ >= 5
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wpessimizing-move"
+#endif
+
 #define BOOST_TEST_MODULE odeint_rosenbrock4
 
 #include <utility>
@@ -133,3 +139,7 @@ BOOST_AUTO_TEST_CASE( test_rosenbrock4_copy_dense_output )
 }
 
 BOOST_AUTO_TEST_SUITE_END()
+
+#if defined(__GNUC__) && __GNUC__ >= 5
+#pragma GCC diagnostic pop
+#endif

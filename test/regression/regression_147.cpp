@@ -55,7 +55,7 @@ struct perform_init_test
         state_type x = 0;
 
         Stepper stepper;
-        InitStepper init_stepper;
+        InitStepper init_stepper {};
         stepper.initialize( init_stepper, rhs, x, t, dt ); 
 
         // ab-stepper needs order-1 init steps: t and x should be (order-1)*dt

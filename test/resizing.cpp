@@ -97,7 +97,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE( test_resize , T, resize_check_types )
     const size_t multiplicity = mpl::at< T , mpl::int_< 2 > >::type::value;
     adjust_size_count = 0;
 
-    stepper_type stepper;
+    stepper_type stepper {};
     test_array_type x {};
     stepper.do_step( constant_system , x , 0.0 , 0.1 );
     stepper.do_step( constant_system , x , 0.0 , 0.1 );
