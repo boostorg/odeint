@@ -48,6 +48,10 @@ typedef mpl::vector<
     , dummy_dense_output_stepper
     > dummy_steppers;
 
+#if defined(__GNUC__) && __GNUC__ >= 5
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+#endif
 
 BOOST_AUTO_TEST_CASE( copy_controlled_stepper_iterator )
 {
@@ -71,6 +75,10 @@ BOOST_AUTO_TEST_CASE( copy_controlled_stepper_iterator )
     BOOST_CHECK( iter1.same( iter2 ) );
 
 }
+
+#if defined(__GNUC__) && __GNUC__ >= 5
+#pragma GCC diagnostic pop
+#endif
 
 BOOST_AUTO_TEST_CASE( copy_dense_output_stepper_iterator )
 {
