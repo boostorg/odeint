@@ -27,6 +27,10 @@
 #elif defined(__GNUC__) && __GNUC__ >= 9
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wdeprecated-copy"
+#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+#elif defined(__GNUC__) && __GNUC__ >= 5
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
 #elif defined(_MSC_VER)
 #pragma warning(push)
 #pragma warning(disable : 5267)
@@ -157,7 +161,7 @@ struct algebra_dispatcher< boost::multi_array< T , N > >
 
 #if defined(__clang__) && __clang_major__ >= 10
 #pragma clang diagnostic pop
-#elif defined(__GNUC__) && __GNUC__ >= 9
+#elif defined(__GNUC__) && __GNUC__ >= 5
 #pragma GCC diagnostic pop
 #elif defined(_MSC_VER)
 #pragma warning(pop)
