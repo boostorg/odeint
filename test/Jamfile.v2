@@ -27,6 +27,7 @@ project
       <link>static
       <toolset>clang:<cxxflags>-Wno-unused-variable
       # <cxxflags>-D_SCL_SECURE_NO_WARNINGS
+      <define>_CRT_SECURE_NO_WARNINGS
       <warnings>extra
       # <toolset>msvc:<warnings-as-errors>on
       <toolset>clang:<warnings-as-errors>on

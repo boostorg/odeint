@@ -26,6 +26,11 @@ namespace numeric {
 namespace odeint {
 namespace detail {
 
+#if defined(__GNUC__) && __GNUC__ >= 5
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+#endif
+
 /**
  * return t1 < t2 if dt > 0 and t1 > t2 if dt < 0 with epsilon accuracy
  */
@@ -73,6 +78,11 @@ T max_abs( T t1 , T t2 )
     else
         return min BOOST_PREVENT_MACRO_SUBSTITUTION ( t1 , t2 );
 }
+
+#if defined(__GNUC__) && __GNUC__ >= 5
+#pragma GCC diagnostic pop
+#endif
+
 } } } }
 
 #endif
