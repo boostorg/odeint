@@ -21,7 +21,7 @@
 #endif
 
 // Stems from Boost.Multiprecision
-#if defined(__GNUC__) && __GNUC__ >= 5
+#if defined(__GNUC__) && __GNUC__ >= 9
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wpessimizing-move"
 #endif
@@ -140,6 +140,6 @@ BOOST_AUTO_TEST_CASE( test_rosenbrock4_copy_dense_output )
 
 BOOST_AUTO_TEST_SUITE_END()
 
-#if defined(__GNUC__) && __GNUC__ >= 5
+#if defined(__GNUC__) && __GNUC__ >= 9
 #pragma GCC diagnostic pop
 #endif

@@ -41,17 +41,17 @@ using namespace boost::numeric::odeint;
 typedef dummy_stepper::state_type state_type;
 typedef dummy_stepper::value_type value_type;
 
+#if defined(__GNUC__) && __GNUC__ >= 5
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+#endif
+
 BOOST_AUTO_TEST_SUITE( adaptive_iterator_test )
 
 typedef mpl::vector<
     dummy_controlled_stepper
     , dummy_dense_output_stepper
     > dummy_steppers;
-
-#if defined(__GNUC__) && __GNUC__ >= 5
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
-#endif
 
 BOOST_AUTO_TEST_CASE( copy_controlled_stepper_iterator )
 {
@@ -75,10 +75,6 @@ BOOST_AUTO_TEST_CASE( copy_controlled_stepper_iterator )
     BOOST_CHECK( iter1.same( iter2 ) );
 
 }
-
-#if defined(__GNUC__) && __GNUC__ >= 5
-#pragma GCC diagnostic pop
-#endif
 
 BOOST_AUTO_TEST_CASE( copy_dense_output_stepper_iterator )
 {
@@ -352,3 +348,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE( copy_algorithm_with_range_factory , Stepper , dum
 
 
 BOOST_AUTO_TEST_SUITE_END()
+
+#if defined(__GNUC__) && __GNUC__ >= 5
+#pragma GCC diagnostic pop
+#endif
