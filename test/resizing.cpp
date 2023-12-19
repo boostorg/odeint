@@ -98,7 +98,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE( test_resize , T, resize_check_types )
     adjust_size_count = 0;
 
     stepper_type stepper;
-    test_array_type x;
+    test_array_type x {};
     stepper.do_step( constant_system , x , 0.0 , 0.1 );
     stepper.do_step( constant_system , x , 0.0 , 0.1 );
     stepper.do_step( constant_system , x , 0.0 , 0.1 );
