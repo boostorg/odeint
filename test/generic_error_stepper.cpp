@@ -21,6 +21,11 @@
     #pragma warning(disable:4996)
 #endif
 
+#if defined(__GNUC__) && __GNUC__ >= 7
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+#endif
+
 #define BOOST_TEST_MODULE odeint_generic_error_stepper
 
 #include <iostream>
@@ -106,3 +111,7 @@ BOOST_AUTO_TEST_CASE( test_generic_error_stepper )
 }
 
 BOOST_AUTO_TEST_SUITE_END()
+
+#if defined(__GNUC__) && __GNUC__ >= 7
+#pragma GCC diagnostic pop
+#endif

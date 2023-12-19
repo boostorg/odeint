@@ -20,6 +20,11 @@
     #pragma warning(disable:4996)
 #endif
 
+#if defined(__GNUC__) && __GNUC__ >= 7
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+#endif
+
 #define BOOST_TEST_MODULE odeint_resize
 
 #include <vector>
@@ -109,3 +114,8 @@ BOOST_AUTO_TEST_CASE_TEMPLATE( test_resize , T, resize_check_types )
 
 
 BOOST_AUTO_TEST_SUITE_END()
+
+
+#if defined(__GNUC__) && __GNUC__ >= 7
+#pragma GCC diagnostic pop
+#endif
