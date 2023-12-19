@@ -51,7 +51,7 @@ typedef mpl::vector<
     , dummy_dense_output_stepper
     > dummy_steppers;
 
-std::array<double,4> times = { 0.0 , 0.1, 0.2, 0.3 };
+std::array<double,4> times = {{ 0.0 , 0.1, 0.2, 0.3 }};
 typedef std::array<double,4>::iterator time_iterator_type;
 typedef std::vector< std::pair< state_type , time_type > > result_vector;
 
