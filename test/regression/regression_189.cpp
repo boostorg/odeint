@@ -15,6 +15,11 @@
  
 #define BOOST_TEST_MODULE odeint_regression_189
 
+#if defined(__GNUC__) && __GNUC__ >= 9
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-copy"
+#endif
+
 #include <boost/numeric/odeint.hpp>
 
 #include <boost/test/unit_test.hpp>
@@ -76,3 +81,7 @@ BOOST_AUTO_TEST_CASE( regression_189 )
 
     BOOST_CHECK_EQUAL( num_of_steps2 , num_of_steps_expected );
 }
+
+#if defined(__GNUC__) && __GNUC__ >= 9
+#pragma GCC diagnostic pop
+#endif
