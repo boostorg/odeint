@@ -35,7 +35,7 @@ BOOST_AUTO_TEST_SUITE( unwrap_reference_test )
 
 BOOST_AUTO_TEST_CASE( test_case )
 {
-    state_type x = {0.0, 0.0, 0.0};
+    state_type x = {{0.0, 0.0, 0.0}};
 
     typedef boost::numeric::odeint::runge_kutta4<state_type> stepper_type;
 // check if array algebra is selected, but only if odeint detects c++11
