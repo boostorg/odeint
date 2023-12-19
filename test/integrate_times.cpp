@@ -14,6 +14,11 @@
  copy at http://www.boost.org/LICENSE_1_0.txt)
  */
 
+#if defined(__GNUC__) && __GNUC__ >= 5
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+#endif
+
 #define BOOST_TEST_MODULE odeint_integrate_times
 
 #include <boost/test/unit_test.hpp>
@@ -253,3 +258,7 @@ BOOST_AUTO_TEST_CASE( test_integrate_times_overshoot )
 }
 
 BOOST_AUTO_TEST_SUITE_END()
+
+#if defined(__GNUC__) && __GNUC__ >= 5
+#pragma GCC diagnostic pop
+#endif

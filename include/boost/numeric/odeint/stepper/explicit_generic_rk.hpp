@@ -178,8 +178,8 @@ private:
 
     resizer_type m_resizer;
 
-    wrapped_state_type m_x_tmp;
-    wrapped_deriv_type m_F[StageCount-1];
+    wrapped_state_type m_x_tmp {};
+    wrapped_deriv_type m_F[StageCount-1] {};
 
 };
 
