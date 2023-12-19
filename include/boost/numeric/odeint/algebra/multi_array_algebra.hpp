@@ -18,7 +18,7 @@
 #ifndef BOOST_NUMERIC_ODEINT_ALGEBRA_MULTI_ARRAY_ALGEBRA_HPP_DEFINED
 #define BOOST_NUMERIC_ODEINT_ALGEBRA_MULTI_ARRAY_ALGEBRA_HPP_DEFINED
 
-#if defined(__clang__) && __clang_major__ >= 13
+#if defined(__clang__) && __clang_major__ >= 13 && !defined(__APPLE__)
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-copy-with-user-provided-copy"
 #elif defined(__clang__) && __clang_major__ >= 10
