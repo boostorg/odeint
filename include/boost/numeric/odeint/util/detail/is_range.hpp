@@ -28,25 +28,19 @@
 #include <cstddef>
 #include <type_traits>
 #include <boost/range/config.hpp>
-#include <boost/mpl/has_xxx.hpp>
+#include <boost/numeric/odeint/tools/traits.hpp>
 
 namespace boost {
 namespace numeric {
 namespace odeint {
 
+namespace detail {
 
-
-namespace range_detail
-{
-BOOST_MPL_HAS_XXX_TRAIT_DEF(iterator)
-    BOOST_MPL_HAS_XXX_TRAIT_DEF(const_iterator)
-}
-
-namespace detail
-{
+BOOST_NUMERIC_ODEINT_HAS_NAMED_TRAIT(has_iterator, iterator);
+BOOST_NUMERIC_ODEINT_HAS_NAMED_TRAIT(has_const_iterator, const_iterator);
 
 template< typename Range >
-struct is_range : std::integral_constant<bool, (range_detail::has_iterator<Range>::value && range_detail::has_const_iterator<Range>::value)>
+struct is_range : std::integral_constant<bool, (has_iterator<Range>::value && has_const_iterator<Range>::value)>
 {
 };
 
