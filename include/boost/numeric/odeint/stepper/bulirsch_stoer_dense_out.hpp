@@ -45,9 +45,6 @@
 
 #include <boost/numeric/odeint/integrate/max_step_checker.hpp>
 
-#include <boost/type_traits.hpp>
-
-
 namespace boost {
 namespace numeric {
 namespace odeint {
