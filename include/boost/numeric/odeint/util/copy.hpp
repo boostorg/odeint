@@ -18,6 +18,7 @@
 #ifndef BOOST_NUMERIC_ODEINT_UTIL_COPY_HPP_INCLUDED
 #define BOOST_NUMERIC_ODEINT_UTIL_COPY_HPP_INCLUDED
 
+#include <type_traits>
 
 #include <boost/range/algorithm/copy.hpp>
 
@@ -39,6 +40,18 @@ namespace detail {
 
     template< class Container1 , class Container2 >
     void do_copying( const Container1 &from , Container2 &to , boost::mpl::false_ )
+    {
+        to = from;
+    }
+
+    template< class Container1 , class Container2 >
+    void do_copying( const Container1 &from , Container2 &to , std::integral_constant<bool, true>)
+    {
+        boost::range::copy( from , boost::begin( to ) );
+    }
+
+    template< class Container1 , class Container2 >
+    void do_copying( const Container1 &from , Container2 &to , std::integral_constant<bool, false>)
     {
         to = from;
     }

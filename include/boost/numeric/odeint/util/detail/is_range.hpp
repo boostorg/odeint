@@ -26,9 +26,9 @@
 #endif
 
 #include <cstddef>
+#include <type_traits>
 #include <boost/range/config.hpp>
 #include <boost/mpl/has_xxx.hpp>
-#include <boost/mpl/bool.hpp>
 #include <boost/mpl/and.hpp>
 
 namespace boost {
@@ -56,12 +56,12 @@ struct is_range : boost::mpl::and_<range_detail::has_iterator<Range>, range_deta
 //////////////////////////////////////////////////////////////////////////
 
 template< typename iteratorT >
-struct is_range< std::pair<iteratorT,iteratorT> > : boost::mpl::true_
+struct is_range< std::pair<iteratorT,iteratorT> > : std::integral_constant<bool, true>
 {
 };
 
 template< typename iteratorT >
-struct is_range< const std::pair<iteratorT,iteratorT> > : boost::mpl::true_
+struct is_range< const std::pair<iteratorT,iteratorT> > : std::integral_constant<bool, true>
 {
 };
 
@@ -70,12 +70,12 @@ struct is_range< const std::pair<iteratorT,iteratorT> > : boost::mpl::true_
 //////////////////////////////////////////////////////////////////////////
 
 template< typename elementT, std::size_t sz >
-struct is_range< elementT[sz] > : boost::mpl::true_
+struct is_range< elementT[sz] > : std::integral_constant<bool, true>
 {
 };
 
 template< typename elementT, std::size_t sz >
-struct is_range< const elementT[sz] > : boost::mpl::true_
+struct is_range< const elementT[sz] > : std::integral_constant<bool, true>
 {
 };
 
@@ -84,42 +84,42 @@ struct is_range< const elementT[sz] > : boost::mpl::true_
 //////////////////////////////////////////////////////////////////////////
 
 template<>
-struct is_range< char* > : boost::mpl::true_
+struct is_range< char* > : std::integral_constant<bool, true>
 {
 };
 
 template<>
-struct is_range< wchar_t* > : boost::mpl::true_
+struct is_range< wchar_t* > : std::integral_constant<bool, true>
 {
 };
 
 template<>
-struct is_range< const char* > : boost::mpl::true_
+struct is_range< const char* > : std::integral_constant<bool, true>
 {
 };
 
 template<>
-struct is_range< const wchar_t* > : boost::mpl::true_
+struct is_range< const wchar_t* > : std::integral_constant<bool, true>
 {
 };
 
 template<>
-struct is_range< char* const > : boost::mpl::true_
+struct is_range< char* const > : std::integral_constant<bool, true>
 {
 };
 
 template<>
-struct is_range< wchar_t* const > : boost::mpl::true_
+struct is_range< wchar_t* const > : std::integral_constant<bool, true>
 {
 };
 
 template<>
-struct is_range< const char* const > : boost::mpl::true_
+struct is_range< const char* const > : std::integral_constant<bool, true>
 {
 };
 
 template<>
-struct is_range< const wchar_t* const > : boost::mpl::true_
+struct is_range< const wchar_t* const > : std::integral_constant<bool, true>
 {
 };
 

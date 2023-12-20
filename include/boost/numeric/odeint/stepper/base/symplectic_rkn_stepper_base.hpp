@@ -20,6 +20,7 @@
 #define BOOST_NUMERIC_ODEINT_STEPPER_BASE_SYMPLECTIC_RKN_STEPPER_BASE_HPP_INCLUDED
 
 #include <array>
+#include <type_traits>
 
 #include <boost/numeric/odeint/util/bind.hpp>
 #include <boost/numeric/odeint/util/unwrap_reference.hpp>
@@ -182,7 +183,7 @@ private:
 
     // stepper for systems with function for dq/dt = f(p) and dp/dt = -f(q)
     template< class System , class StateIn , class StateOut >
-    void do_step_impl( System system , const StateIn &in , time_type /* t */ , StateOut &out , time_type dt , boost::mpl::true_ )
+    void do_step_impl( System system , const StateIn &in , time_type /* t */ , StateOut &out , time_type dt , std::integral_constant<bool, true> )
     {
         typedef typename odeint::unwrap_reference< System >::type system_type;
         typedef typename odeint::unwrap_reference< typename system_type::first_type >::type coor_deriv_func_type;
@@ -236,7 +237,7 @@ private:
 
     // stepper for systems with only function dp /dt = -f(q), dq/dt = p, time not required but still expected for compatibility reasons
     template< class System , class StateIn , class StateOut >
-    void do_step_impl( System system , const StateIn &in , time_type  /* t */ , StateOut &out , time_type dt , boost::mpl::false_ )
+    void do_step_impl( System system , const StateIn &in , time_type  /* t */ , StateOut &out , time_type dt , std::integral_constant<bool, false> )
     {
         typedef typename odeint::unwrap_reference< System >::type momentum_deriv_func_type;
         momentum_deriv_func_type &momentum_func = system;
