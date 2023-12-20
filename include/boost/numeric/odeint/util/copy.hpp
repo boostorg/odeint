@@ -33,18 +33,6 @@ namespace odeint {
 namespace detail {
 
     template< class Container1 , class Container2 >
-    void do_copying( const Container1 &from , Container2 &to , boost::mpl::true_ )
-    {
-        boost::range::copy( from , boost::begin( to ) );
-    }
-
-    template< class Container1 , class Container2 >
-    void do_copying( const Container1 &from , Container2 &to , boost::mpl::false_ )
-    {
-        to = from;
-    }
-
-    template< class Container1 , class Container2 >
     void do_copying( const Container1 &from , Container2 &to , std::integral_constant<bool, true>)
     {
         boost::range::copy( from , boost::begin( to ) );

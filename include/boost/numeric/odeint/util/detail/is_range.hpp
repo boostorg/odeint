@@ -29,7 +29,6 @@
 #include <type_traits>
 #include <boost/range/config.hpp>
 #include <boost/mpl/has_xxx.hpp>
-#include <boost/mpl/and.hpp>
 
 namespace boost {
 namespace numeric {
@@ -47,7 +46,7 @@ namespace detail
 {
 
 template< typename Range >
-struct is_range : boost::mpl::and_<range_detail::has_iterator<Range>, range_detail::has_const_iterator<Range> >
+struct is_range : std::integral_constant<bool, (range_detail::has_iterator<Range>::value && range_detail::has_const_iterator<Range>::value)>
 {
 };
 
