@@ -32,11 +32,4 @@
 
 #endif // __CUDACC__
 
-
-
-/*
-#define BOOST_ODEINT_CHECK_OPERATION_ARITY( Operation , Arity ) \
-        BOOST_STATIC_ASSERT(( boost::function_traits< Operation >::arity == Arity ))
- */
-
 #endif // BOOST_NUMERIC_ODEINT_ALGEBRA_DETAIL_MACROS_HPP_INCLUDED
