@@ -31,7 +31,7 @@
 #include <boost/test/unit_test.hpp>
 #include <boost/static_assert.hpp>
 #include <boost/type_traits/is_same.hpp>
-#include <boost/array.hpp>
+#include <array>
 #include <boost/mpl/list.hpp>
 
 using namespace boost::unit_test;
@@ -48,13 +48,13 @@ BOOST_AUTO_TEST_CASE( range_algebra_with_vector )
 
 BOOST_AUTO_TEST_CASE( array_algebra_with_array )
 {
-    typedef runge_kutta4< boost::array< double , 2 > > stepper_type;
+    typedef runge_kutta4< std::array< double , 2 > > stepper_type;
     BOOST_STATIC_ASSERT(( boost::is_same< stepper_type::algebra_type , array_algebra >::value ));
 }
 
 BOOST_AUTO_TEST_CASE( range_algebra_with_array )
 {
-    typedef runge_kutta4< boost::array< double , 2 > , double , boost::array< double , 2 > , double , range_algebra > stepper_type;
+    typedef runge_kutta4< std::array< double , 2 > , double , std::array< double , 2 > , double , range_algebra > stepper_type;
     BOOST_STATIC_ASSERT(( boost::is_same< stepper_type::algebra_type , range_algebra >::value ));
 }
 

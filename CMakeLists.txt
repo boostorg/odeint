@@ -14,7 +14,6 @@ target_include_directories(boost_numeric_odeint INTERFACE include)
 
 target_link_libraries(boost_numeric_odeint
   INTERFACE
-    Boost::array
     Boost::assert
     Boost::bind
     Boost::compute

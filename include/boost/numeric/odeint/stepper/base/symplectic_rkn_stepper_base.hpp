@@ -19,7 +19,7 @@
 #ifndef BOOST_NUMERIC_ODEINT_STEPPER_BASE_SYMPLECTIC_RKN_STEPPER_BASE_HPP_INCLUDED
 #define BOOST_NUMERIC_ODEINT_STEPPER_BASE_SYMPLECTIC_RKN_STEPPER_BASE_HPP_INCLUDED
 
-#include <boost/array.hpp>
+#include <array>
 
 #include <boost/numeric/odeint/util/bind.hpp>
 #include <boost/numeric/odeint/util/unwrap_reference.hpp>
@@ -86,7 +86,7 @@ public:
 
     static const order_type order_value = Order;
 
-    typedef boost::array< value_type , num_of_stages > coef_type;
+    typedef std::array< value_type , num_of_stages > coef_type;
 
     symplectic_nystroem_stepper_base( const coef_type &coef_a , const coef_type &coef_b , const algebra_type &algebra = algebra_type() )
         : algebra_stepper_base_type( algebra ) , m_coef_a( coef_a ) , m_coef_b( coef_b ) ,

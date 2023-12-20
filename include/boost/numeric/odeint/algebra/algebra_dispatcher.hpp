@@ -29,7 +29,7 @@
 #include <boost/numeric/odeint/algebra/array_algebra.hpp>
 #include <boost/numeric/odeint/algebra/vector_space_algebra.hpp>
 
-#include <boost/array.hpp>
+#include <array>
 
 
 namespace boost {
@@ -48,7 +48,7 @@ struct algebra_dispatcher : algebra_dispatcher_sfinae< StateType > { };
 
 // specialize for array
 template< class T , size_t N >
-struct algebra_dispatcher< boost::array< T , N > >
+struct algebra_dispatcher< std::array< T , N > >
 {
     typedef array_algebra algebra_type;
 };
@@ -84,27 +84,5 @@ struct algebra_dispatcher< boost::numeric::ublas::matrix< T , L , A > >
 }
 }
 }
-
-#ifdef BOOST_NUMERIC_ODEINT_CXX11
-
-// c++11 mode: specialization for std::array if available
-
-#include <array>
-
-namespace boost {
-namespace numeric {
-namespace odeint {
-    
-// specialize for std::array
-template< class T , size_t N >
-struct algebra_dispatcher< std::array< T , N > >
-{
-    typedef array_algebra algebra_type;
-};
-
-} } }
-
-#endif
-
 
 #endif

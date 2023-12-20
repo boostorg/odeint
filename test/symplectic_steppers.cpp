@@ -28,7 +28,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include <boost/array.hpp>
+#include <array>
 #include <boost/static_assert.hpp>
 #include <boost/type_traits/is_same.hpp>
 
