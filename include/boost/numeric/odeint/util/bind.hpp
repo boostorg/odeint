@@ -24,8 +24,8 @@ namespace numeric {
 namespace odeint {
 namespace detail {
 
-using ::std::bind;
-using namespace ::std::placeholders;
+using std::bind;
+using namespace std::placeholders;
 
 } //namespace detail
 } //namespace odeint

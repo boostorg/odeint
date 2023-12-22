@@ -151,7 +151,7 @@ public:
         // alloc a
         m_resizer.adjust_size( ain ,
                                detail::bind( &velocity_verlet::template resize_impl< AccelerationIn > ,
-                                             detail::ref( *this ) , detail::_1 ) );
+                                             std::ref( *this ) , detail::_1 ) );
         boost::numeric::odeint::copy( ain , get_current_acc() );
         m_first_call = false;
     }
@@ -162,7 +162,7 @@ public:
     {
         m_resizer.adjust_size( qin ,
                                detail::bind( &velocity_verlet::template resize_impl< CoorIn > ,
-                                             detail::ref( *this ) , detail::_1 ) );
+                                             std::ref( *this ) , detail::_1 ) );
         initialize_acc( system , qin , pin , t );
     }
 
@@ -197,7 +197,7 @@ private:
         // alloc a
         if( m_resizer.adjust_size( qinout ,
                                    detail::bind( &velocity_verlet::template resize_impl< xyz_type > ,
-                                                 detail::ref( *this ) , detail::_1 ) )
+                                                 std::ref( *this ) , detail::_1 ) )
          || m_first_call )
         {
             initialize_acc( system , qinout , pinout , t );

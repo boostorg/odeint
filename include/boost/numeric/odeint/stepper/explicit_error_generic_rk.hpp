@@ -129,7 +129,7 @@ public:
     void do_step_impl( System system , const StateIn &in , const DerivIn &dxdt ,
             time_type t , StateOut &out , time_type dt )
     {
-        m_resizer.adjust_size( in , detail::bind( &stepper_type::template resize_impl< StateIn > , detail::ref( *this ) , detail::_1 ) );
+        m_resizer.adjust_size( in , detail::bind( &stepper_type::template resize_impl< StateIn > , std::ref( *this ) , detail::_1 ) );
 
         // actual calculation done in generic_rk.hpp
         m_rk_algorithm.do_step( stepper_base_type::m_algebra , system , in , dxdt , t , out , dt , m_x_tmp.m_v , m_F );

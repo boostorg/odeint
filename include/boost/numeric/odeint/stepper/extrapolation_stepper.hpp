@@ -174,7 +174,7 @@ class extrapolation_stepper : public explicit_error_stepper_base
     {
         m_resizer.adjust_size(
             in, detail::bind( &stepper_type::template resize_impl< StateIn >,
-                              detail::ref( *this ), detail::_1 ) );
+                              std::ref( *this ), detail::_1 ) );
         size_t k = 0;
         m_midpoint.set_steps( m_interval_sequence[k] );
         m_midpoint.do_step( system, in, dxdt, t, out, dt );
@@ -194,7 +194,7 @@ class extrapolation_stepper : public explicit_error_stepper_base
         m_xout_resizer.adjust_size(
             inout,
             detail::bind( &stepper_type::template resize_m_xout< StateInOut >,
-                          detail::ref( *this ), detail::_1 ) );
+                          std::ref( *this ), detail::_1 ) );
         do_step_impl( system, inout, dxdt, t, m_xout.m_v, dt );
         boost::numeric::odeint::copy( m_xout.m_v, inout );
     }

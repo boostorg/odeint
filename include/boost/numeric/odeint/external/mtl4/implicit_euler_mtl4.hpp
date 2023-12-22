@@ -76,7 +76,7 @@ public:
         jacobi_func_type &jacobi_func = sys.second;
 
         m_resizer.adjust_size( x , detail::bind(
-                                   &stepper_type::template resize_impl< state_type > , detail::ref( *this ) , detail::_1 ) );
+                                   &stepper_type::template resize_impl< state_type > , std::ref( *this ) , detail::_1 ) );
 
         m_identity.m_v = 1;
 
