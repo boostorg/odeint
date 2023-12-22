@@ -67,7 +67,7 @@ class extrapolation_stepper : public explicit_error_stepper_base
 
   private:
     // check for Order being odd
-    BOOST_STATIC_ASSERT_MSG(
+    static_assert(
         ( ( Order % 2 ) == 0 ) && ( Order > 2 ),
         "extrapolation_stepper requires even Order larger than 2" );
 

@@ -14,7 +14,7 @@
  */
 
 #include <iostream>
-#include <boost/array.hpp>
+#include <array>
 #include <boost/bind.hpp>
 #include <boost/numeric/odeint.hpp>
 
@@ -23,7 +23,7 @@ using namespace boost::numeric::odeint;
 
 const size_t N = 3;
 
-typedef boost::array< double , N > state_type;
+typedef std::array< double , N > state_type;
 
 //[ system_function_structure
 void sys( const state_type & /*x*/ , state_type & /*dxdt*/ , const double /*t*/ )
@@ -42,7 +42,7 @@ void sys2( const state_type &/*x*/ , state_type &/*dxdt*/ , const double /*t*/ )
 
 
 //[ symplectic_stepper_detail_system_function
-typedef boost::array< double , 1 > vector_type;
+typedef std::array< double , 1 > vector_type;
 
 
 struct harm_osc_f1

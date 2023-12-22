@@ -20,7 +20,7 @@
 #define BOOST_NUMERIC_ODEINT_STEPPER_EXPLICIT_GENERIC_RK_HPP_INCLUDED
 
 
-#include <boost/array.hpp>
+#include <array>
 
 
 #include <boost/numeric/odeint/stepper/base/explicit_stepper_base.hpp>
@@ -60,14 +60,14 @@ struct stage_vector;
 template< class T , class Constant >
 struct array_wrapper
 {
-    typedef const typename boost::array< T , Constant::value > type;
+    typedef const typename std::array< T , Constant::value > type;
 };
 
 template< class T , size_t i >
 struct stage
 {
     T c;
-    boost::array< T , i > a;
+    std::array< T , i > a;
 };
 
 

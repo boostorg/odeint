@@ -53,7 +53,7 @@ public:
     : m_algebra( algebra )
     {};
 
-    size_t adjust_order(size_t order, size_t init, boost::array<wrapped_state_type, 4> &xerr)
+    size_t adjust_order(size_t order, size_t init, std::array<wrapped_state_type, 4> &xerr)
     {
         using std::abs;
 
@@ -149,7 +149,7 @@ public:
 
     typedef typename stepper_type::wrapped_state_type wrapped_state_type;
     typedef typename stepper_type::wrapped_deriv_type wrapped_deriv_type;
-    typedef boost::array< wrapped_state_type , 4 > error_storage_type;
+    typedef std::array< wrapped_state_type , 4 > error_storage_type;
 
     typedef typename stepper_type::coeff_type coeff_type;
     typedef controlled_adams_bashforth_moulton< ErrorStepper , StepAdjuster , OrderAdjuster , Resizer > controlled_stepper_type;

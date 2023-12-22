@@ -29,7 +29,7 @@
 
 #include <boost/numeric/odeint/config.hpp>
 
-#include <boost/array.hpp>
+#include <array>
 
 #include <boost/test/unit_test.hpp>
 
@@ -128,9 +128,9 @@ struct perform_stepper_test< Stepper , std::vector<T> >
 };
 
 template< class Stepper , typename T >
-struct perform_stepper_test< Stepper , boost::array<T,1> >
+struct perform_stepper_test< Stepper , std::array<T,1> >
 {
-    typedef boost::array<T,1> array_type;
+    typedef std::array<T,1> array_type;
     void operator()( void )
     {
         using std::abs;

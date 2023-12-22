@@ -14,7 +14,6 @@ target_include_directories(boost_numeric_odeint INTERFACE include)
 
 target_link_libraries(boost_numeric_odeint
   INTERFACE
-    Boost::array
     Boost::assert
     Boost::bind
     Boost::compute
@@ -30,7 +29,6 @@ target_link_libraries(boost_numeric_odeint
     Boost::numeric_ublas
     Boost::preprocessor
     Boost::range
-    Boost::static_assert
     Boost::throw_exception
     Boost::type_traits
     Boost::units

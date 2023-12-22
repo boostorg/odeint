@@ -56,8 +56,7 @@ class adams_bashforth_moulton
 {
 
 #ifndef DOXYGEN_SKIP
-    BOOST_STATIC_ASSERT(( Steps > 0 ));
-    BOOST_STATIC_ASSERT(( Steps < 9 ));
+    static_assert(( Steps > 0 && Steps < 9 ), "Must have between 1 and 8 steps inclusive");
 #endif
 
 public :

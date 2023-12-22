@@ -17,11 +17,11 @@
 #ifndef BOOST_NUMERIC_ODEINT_ALGEBRA_DETAIL_EXTRACT_VALUE_TYPE_HPP_INCLUDED
 #define BOOST_NUMERIC_ODEINT_ALGEBRA_DETAIL_EXTRACT_VALUE_TYPE_HPP_INCLUDED
 
+#include <type_traits>
 #include <boost/utility.hpp>
 #include <boost/mpl/identity.hpp>
 #include <boost/mpl/if.hpp>
 #include <boost/mpl/has_xxx.hpp>
-#include <boost/type_traits/is_same.hpp>
 
 BOOST_MPL_HAS_XXX_TRAIT_DEF(value_type)
 
@@ -40,8 +40,8 @@ struct extract_value_type
 // e.g. returning S::value_type::value_type::value_type
 
 template< typename S >
-struct extract_value_type< S , typename boost::enable_if< has_value_type<S> >::type >
-  : mpl::if_< is_same< S, typename S::value_type > ,
+struct extract_value_type< S , typename std::enable_if< has_value_type<S>::value >::type >
+  : mpl::if_< std::is_same< S, typename S::value_type > ,
         mpl::identity< S > , // cut the recursion if S and S::value_type are the same
         extract_value_type< typename S::value_type > >::type
 {};
