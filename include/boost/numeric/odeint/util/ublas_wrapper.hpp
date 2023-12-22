@@ -19,7 +19,7 @@
 #define BOOST_NUMERIC_ODEINT_UTIL_UBLAS_WRAPPER_HPP_INCLUDED
 
 // Need this PR to be merged to actually fix the issue: https://github.com/boostorg/ublas/pull/153
-#if defined(__clang__) && __clang_major__ >= 13
+#if defined(__clang__) && __clang_major__ >= 13 && !defined(__APPLE__)
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-copy-with-user-provided-copy"
 #elif defined(__clang__) && __clang_major__ >= 10
