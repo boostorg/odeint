@@ -69,7 +69,7 @@ namespace mpl = boost::mpl;
 typedef double value_type;
 typedef std::vector< value_type > state_type;
 
-void lorenz( const state_type &x , state_type &dxdt , const value_type t )
+void lorenz( const state_type &x , state_type &dxdt , const value_type /*t*/ )
 {
     //const value_type sigma( 10.0 );
     const value_type R( 28.0 );

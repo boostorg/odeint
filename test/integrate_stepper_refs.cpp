@@ -58,7 +58,7 @@ public :
     typedef stepper_tag stepper_category;
 
     template< class System  >
-    void do_step( System system , state_type &in , time_type t , time_type dt )
+    void do_step( System /*system*/ , state_type &/*in*/ , time_type /*t*/ , time_type /*dt*/ )
     {
         // empty
 
@@ -80,7 +80,7 @@ public :
     typedef controlled_stepper_tag stepper_category;
 
     template< class System  >
-    controlled_step_result try_step( System system , state_type &in , time_type &t , time_type &dt )
+    controlled_step_result try_step( System /*system*/ , state_type &/*in*/ , time_type &t , time_type &dt )
     {
         std::cout << "dense out stepper: " << t << " , " << dt << std::endl;
         t += dt;
@@ -111,13 +111,13 @@ public :
     }
 
     template< class System >
-    void do_step( System system )
+    void do_step( System /*system*/ )
     {
         std::cout << "dense out stepper: " << m_t << " , " << m_dt << std::endl;
         m_t += m_dt;
     }
 
-    void calc_state( const time_type t_inter , state_type &x )
+    void calc_state( const time_type /*t_inter*/ , state_type &x )
     {
         x = m_x;
     }
@@ -139,7 +139,7 @@ private :
 };
 
 
-void lorenz( const state_type &x , state_type &dxdt , const value_type t )
+void lorenz( const state_type &x , state_type &dxdt , const value_type /*t*/ )
 {
     //const value_type sigma( 10.0 );
     const value_type R( 28.0 );

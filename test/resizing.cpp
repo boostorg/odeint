@@ -20,13 +20,18 @@
     #pragma warning(disable:4996)
 #endif
 
+#if defined(__GNUC__) && __GNUC__ >= 7
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+#endif
+
 #define BOOST_TEST_MODULE odeint_resize
 
 #include <vector>
 #include <cmath>
 
 #include <boost/array.hpp>
-#include <boost/bind.hpp>
+#include <boost/bind/bind.hpp>
 #include <boost/utility.hpp>
 #include <boost/type_traits/integral_constant.hpp>
 
@@ -48,6 +53,7 @@
 
 using namespace boost::unit_test;
 using namespace boost::numeric::odeint;
+using namespace boost::placeholders;
 
 namespace mpl = boost::mpl;
 
@@ -56,7 +62,7 @@ namespace mpl = boost::mpl;
 
 
 
-void constant_system( const test_array_type &x , test_array_type &dxdt , double t ) { dxdt[0] = 1.0; }
+void constant_system( const test_array_type & , test_array_type &dxdt , double ) { dxdt[0] = 1.0; }
 
 
 BOOST_AUTO_TEST_SUITE( check_resize_test )
@@ -96,8 +102,8 @@ BOOST_AUTO_TEST_CASE_TEMPLATE( test_resize , T, resize_check_types )
     const size_t multiplicity = mpl::at< T , mpl::int_< 2 > >::type::value;
     adjust_size_count = 0;
 
-    stepper_type stepper;
-    test_array_type x;
+    stepper_type stepper {};
+    test_array_type x {};
     stepper.do_step( constant_system , x , 0.0 , 0.1 );
     stepper.do_step( constant_system , x , 0.0 , 0.1 );
     stepper.do_step( constant_system , x , 0.0 , 0.1 );
@@ -108,3 +114,8 @@ BOOST_AUTO_TEST_CASE_TEMPLATE( test_resize , T, resize_check_types )
 
 
 BOOST_AUTO_TEST_SUITE_END()
+
+
+#if defined(__GNUC__) && __GNUC__ >= 7
+#pragma GCC diagnostic pop
+#endif

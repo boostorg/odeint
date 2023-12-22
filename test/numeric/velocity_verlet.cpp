@@ -38,8 +38,8 @@ typedef boost::array< double , 1 > state_type;
 // harmonic oscillator, analytic solution x[0] = sin( t )
 struct osc
 {
-    void operator()( const state_type &x, const state_type &v, state_type &a,
-                     const double t ) const
+    void operator()( const state_type &x, const state_type &/*v*/, state_type &a,
+                     const double /*t*/ ) const
     {
         a[0] = -x[0];
     }

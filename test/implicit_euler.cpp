@@ -44,7 +44,7 @@ typedef boost::numeric::ublas::matrix< value_type > matrix_type;
 /* use functors, because functions don't work with msvc 10, I guess this is a bug */
 struct sys
 {
-    void operator()( const state_type &x , state_type &dxdt , const value_type t ) const
+    void operator()( const state_type &x , state_type &dxdt , const value_type /*t*/ ) const
     {
         dxdt( 0 ) = x( 0 ) + 2 * x( 1 );
         dxdt( 1 ) = x( 1 );
@@ -53,7 +53,7 @@ struct sys
 
 struct jacobi 
 {
-    void operator()( const state_type &x , matrix_type &jacobi , const value_type t ) const
+    void operator()( const state_type &/*x*/ , matrix_type &jacobi , const value_type /*t*/ ) const
     {
         jacobi( 0 , 0 ) = 1;
         jacobi( 0 , 1 ) = 2;

@@ -34,7 +34,7 @@ typedef double value_type;
 struct lorenz
 {
     template< class State , class Deriv , class Value >
-    void operator()( const State &_x , Deriv &_dxdt , const Value &dt ) const
+    void operator()( const State &_x , Deriv &_dxdt , const Value &/*dt*/ ) const
     {
         const value_type sigma = 10.0;
         const value_type R = 28.0;

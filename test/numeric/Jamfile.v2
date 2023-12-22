@@ -7,18 +7,23 @@
 
 
 import testing ;
+import ../../config/checks/config : requires ;
 
 use-project boost : $(BOOST_ROOT) ;
 
 project
     : requirements
-      <library>/boost/test//boost_unit_test_framework
       <define>BOOST_ALL_NO_LIB=1
-      <include>../../include
+      # use test library
+      <library>/boost//unit_test_framework
       <link>static
       <toolset>clang:<cxxflags>-Wno-unused-variable
-
-# <cxxflags>-D_SCL_SECURE_NO_WARNINGS
+      # <cxxflags>-D_SCL_SECURE_NO_WARNINGS
+      <warnings>extra
+      <toolset>msvc:<warnings-as-errors>on
+      <toolset>clang:<warnings-as-errors>on
+      <toolset>gcc:<warnings-as-errors>on
+      [ requires cxx14_decltype_auto cxx14_generic_lambdas cxx14_return_type_deduction cxx14_variable_templates cxx14_constexpr ]
     ;
 
 test-suite "odeint"

@@ -51,7 +51,7 @@ typedef mpl::vector<
     , dummy_dense_output_stepper
     > dummy_steppers;
 
-std::array<double,4> times = { 0.0 , 0.1, 0.2, 0.3 };
+std::array<double,4> times = {{ 0.0 , 0.1, 0.2, 0.3 }};
 typedef std::array<double,4>::iterator time_iterator_type;
 typedef std::vector< std::pair< state_type , time_type > > result_vector;
 
@@ -83,7 +83,10 @@ BOOST_AUTO_TEST_CASE_TEMPLATE( assignment_stepper_iterator , Stepper , dummy_ste
     BOOST_CHECK( iter1.same( iter2 ) );
 }
 
-
+#if defined(__GNUC__) && __GNUC__ >= 5
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+#endif
 
 BOOST_AUTO_TEST_CASE_TEMPLATE( stepper_iterator_factory , Stepper , dummy_steppers )
 {
@@ -100,6 +103,10 @@ BOOST_AUTO_TEST_CASE_TEMPLATE( stepper_iterator_factory , Stepper , dummy_steppe
     // dummy_steppers just add 0.25 at each step, the above for_each leads to 3 do_step calls so x should be 1.75
     BOOST_CHECK_CLOSE( x[0] , 1.75 , 1.0e-13 );
 }
+
+#if defined(__GNUC__) && __GNUC__ >= 5
+#pragma GCC diagnostic pop
+#endif
 
 BOOST_AUTO_TEST_CASE_TEMPLATE( stepper_range , Stepper , dummy_steppers )
 {

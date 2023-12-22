@@ -15,6 +15,11 @@
  
 #define BOOST_TEST_MODULE odeint_regression_189
 
+#if defined(__GNUC__) && __GNUC__ >= 9
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-copy"
+#endif
+
 #include <boost/numeric/odeint.hpp>
 
 #include <boost/test/unit_test.hpp>
@@ -69,10 +74,14 @@ BOOST_AUTO_TEST_CASE( regression_189 )
             std::cout << phoenix::arg_names::arg2 << " " << phoenix::arg_names::arg1[0] << "\n" );
     num_of_steps_expected = 1531;
 
-    // Apple ARM arch takes one additional step
-    #if defined(__aarch64__) && defined(__APPLE__)
+    // Apple ARM arch takes one additional step, but only with clang
+    #if defined(__aarch64__) && defined(__APPLE__) && defined(__clang__)
     ++num_of_steps_expected;
     #endif
 
     BOOST_CHECK_EQUAL( num_of_steps2 , num_of_steps_expected );
 }
+
+#if defined(__GNUC__) && __GNUC__ >= 9
+#pragma GCC diagnostic pop
+#endif

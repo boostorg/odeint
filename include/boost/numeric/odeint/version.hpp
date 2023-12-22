@@ -19,7 +19,7 @@
 
 #include <string>
 #include <sstream>
-
+#include <boost/config.hpp>
 
 #define ODEINT_MAJOR_VERSION 2
 #define ODEINT_MINOR_VERSION 2
@@ -39,14 +39,26 @@ const int patch_level = ODEINT_PATCH_LEVEL ;
 
 }
 
+#ifdef _MSC_VER
+#  pragma warning(push)
+#  pragma warning(disable : 4127)
+#endif
+
 inline std::string get_version_string( void )
 {
     std::ostringstream str;
     str << "v" << version::major << "." << version::minor;
-    if( version::patch_level != 0 ) str << "_" << version::patch_level;
+    BOOST_IF_CONSTEXPR( version::patch_level != 0 ) 
+    {
+        str << "_" << version::patch_level;
+    }
+
     return str.str();
 }
 
+#ifdef _MSC_VER
+#  pragma warning(pop)
+#endif
 
 }
 }

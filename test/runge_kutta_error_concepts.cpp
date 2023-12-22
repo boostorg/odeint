@@ -34,7 +34,7 @@
 #include <boost/test/unit_test.hpp>
 
 #include <boost/ref.hpp>
-#include <boost/bind.hpp>
+#include <boost/bind/bind.hpp>
 #include <boost/utility.hpp>
 #include <boost/type_traits/add_reference.hpp>
 
@@ -58,6 +58,7 @@ using std::vector;
 
 using namespace boost::unit_test;
 using namespace boost::numeric::odeint;
+using namespace boost::placeholders;
 namespace mpl = boost::mpl;
 
 const double result = 2.4; // four steps total...
@@ -68,8 +69,6 @@ template< class Stepper , class System >
 void check_error_stepper_concept( Stepper &stepper , System system , typename Stepper::state_type &x , typename Stepper::state_type &xerr )
 {
     typedef Stepper stepper_type;
-    typedef typename stepper_type::deriv_type container_type;
-    typedef typename stepper_type::order_type order_type;
     typedef typename stepper_type::time_type time_type;
 
     stepper.do_step( system , x , static_cast<time_type>(0.0) , static_cast<time_type>(0.1) );

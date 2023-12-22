@@ -20,6 +20,11 @@
     #pragma warning(disable:4996)
 #endif
 
+#if defined(__GNUC__) && __GNUC__ >= 7
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+#endif
+
 #define BOOST_TEST_MODULE odeint_regression_147
 
 #include <utility>
@@ -38,7 +43,7 @@ namespace mpl = boost::mpl;
 
 typedef double state_type;
 
-void rhs( const state_type &x , state_type &dxdt , const double t )
+void rhs( const state_type &/*x*/ , state_type &dxdt , const double /*t*/ )
 {
     dxdt = 1;
 }
@@ -55,7 +60,7 @@ struct perform_init_test
         state_type x = 0;
 
         Stepper stepper;
-        InitStepper init_stepper;
+        InitStepper init_stepper {};
         stepper.initialize( init_stepper, rhs, x, t, dt ); 
 
         // ab-stepper needs order-1 init steps: t and x should be (order-1)*dt
@@ -86,3 +91,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE( init_test , InitStepper,
 }
 
 BOOST_AUTO_TEST_SUITE_END()
+
+#if defined(__GNUC__) && __GNUC__ >= 7
+#pragma GCC diagnostic pop
+#endif

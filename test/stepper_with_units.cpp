@@ -65,7 +65,7 @@ typedef units::quantity< si::acceleration , value_type > acceleration_type;
 typedef fusion::vector< length_type , velocity_type > state_type;
 typedef fusion::vector< velocity_type , acceleration_type > deriv_type;
 
-void oscillator( const state_type &x , deriv_type &dxdt , time_type t )
+void oscillator( const state_type &x , deriv_type &dxdt , time_type /*t*/ )
 {
     const units::quantity< si::frequency , value_type > omega = 1.0 * si::hertz;
     fusion::at_c< 0 >( dxdt ) = fusion::at_c< 1 >( x );
@@ -77,12 +77,12 @@ void check_stepper( Stepper &stepper )
 {
     typedef Stepper stepper_type;
     typedef typename stepper_type::state_type state_type;
-    typedef typename stepper_type::value_type value_type;
+    //typedef typename stepper_type::value_type value_type;
     typedef typename stepper_type::deriv_type deriv_type;
     typedef typename stepper_type::time_type time_type;
-    typedef typename stepper_type::order_type order_type;
-    typedef typename stepper_type::algebra_type algebra_type;
-    typedef typename stepper_type::operations_type operations_type;
+    //typedef typename stepper_type::order_type order_type;
+    //typedef typename stepper_type::algebra_type algebra_type;
+    //typedef typename stepper_type::operations_type operations_type;
 
     const time_type t( 0.0 * si::second );
     time_type dt( 0.1 * si::second );
@@ -109,12 +109,12 @@ void check_fsal_stepper( Stepper &stepper )
 {
     typedef Stepper stepper_type;
     typedef typename stepper_type::state_type state_type;
-    typedef typename stepper_type::value_type value_type;
+    //typedef typename stepper_type::value_type value_type;
     typedef typename stepper_type::deriv_type deriv_type;
     typedef typename stepper_type::time_type time_type;
-    typedef typename stepper_type::order_type order_type;
-    typedef typename stepper_type::algebra_type algebra_type;
-    typedef typename stepper_type::operations_type operations_type;
+    //typedef typename stepper_type::order_type order_type;
+    //typedef typename stepper_type::algebra_type algebra_type;
+    //typedef typename stepper_type::operations_type operations_type;
 
     const time_type t( 0.0 * si::second );
     time_type dt( 0.1 * si::second );
@@ -140,12 +140,12 @@ void check_error_stepper( Stepper &stepper )
 {
     typedef Stepper stepper_type;
     typedef typename stepper_type::state_type state_type;
-    typedef typename stepper_type::value_type value_type;
+    //typedef typename stepper_type::value_type value_type;
     typedef typename stepper_type::deriv_type deriv_type;
     typedef typename stepper_type::time_type time_type;
-    typedef typename stepper_type::order_type order_type;
-    typedef typename stepper_type::algebra_type algebra_type;
-    typedef typename stepper_type::operations_type operations_type;
+    //typedef typename stepper_type::order_type order_type;
+    //typedef typename stepper_type::algebra_type algebra_type;
+    //typedef typename stepper_type::operations_type operations_type;
 
     const time_type t( 0.0 * si::second );
     time_type dt( 0.1 * si::second );
@@ -171,12 +171,12 @@ void check_fsal_error_stepper( Stepper &stepper )
 {
     typedef Stepper stepper_type;
     typedef typename stepper_type::state_type state_type;
-    typedef typename stepper_type::value_type value_type;
+    //typedef typename stepper_type::value_type value_type;
     typedef typename stepper_type::deriv_type deriv_type;
     typedef typename stepper_type::time_type time_type;
-    typedef typename stepper_type::order_type order_type;
-    typedef typename stepper_type::algebra_type algebra_type;
-    typedef typename stepper_type::operations_type operations_type;
+    //typedef typename stepper_type::order_type order_type;
+    //typedef typename stepper_type::algebra_type algebra_type;
+    //typedef typename stepper_type::operations_type operations_type;
 
     const time_type t( 0.0 * si::second );
     time_type dt( 0.1 * si::second );
@@ -202,8 +202,8 @@ void check_controlled_stepper( Stepper &stepper )
 {
     typedef Stepper stepper_type;
     typedef typename stepper_type::state_type state_type;
-    typedef typename stepper_type::value_type value_type;
-    typedef typename stepper_type::deriv_type deriv_type;
+    //typedef typename stepper_type::value_type value_type;
+    //typedef typename stepper_type::deriv_type deriv_type;
     typedef typename stepper_type::time_type time_type;
 
     time_type t( 0.0 * si::second );
@@ -220,8 +220,8 @@ void check_dense_output_stepper( Stepper &stepper )
 {
     typedef Stepper stepper_type;
     typedef typename stepper_type::state_type state_type;
-    typedef typename stepper_type::value_type value_type;
-    typedef typename stepper_type::deriv_type deriv_type;
+    //typedef typename stepper_type::value_type value_type;
+    //typedef typename stepper_type::deriv_type deriv_type;
     typedef typename stepper_type::time_type time_type;
 //    typedef typename stepper_type::order_type order_type;
 

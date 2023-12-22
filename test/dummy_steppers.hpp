@@ -38,7 +38,7 @@ struct dummy_stepper
     order_type order( void ) const { return 1; }
 
     template< class System >
-    void do_step( System sys , state_type &x , time_type t , time_type dt ) const
+    void do_step( System /*sys*/ , state_type &x , time_type /*t*/ , time_type /*dt*/ ) const
     {
         x[0] += 0.25;
     }
@@ -60,7 +60,7 @@ struct dummy_dense_output_stepper
     }
 
     template< class System >
-    std::pair< time_type , time_type > do_step( System sys )
+    std::pair< time_type , time_type > do_step( System /*sys*/ )
     {
         m_x[0] += 0.25;
         m_t += m_dt;
@@ -105,7 +105,7 @@ struct dummy_controlled_stepper
     typedef controlled_stepper_tag stepper_category;
 
     template< class Sys >
-    controlled_step_result try_step( Sys sys , state_type &x , time_type &t , time_type &dt ) const
+    controlled_step_result try_step( Sys /*sys*/ , state_type &x , time_type &t , time_type &dt ) const
     {
         x[0] += 0.25;
         t += dt;

@@ -78,6 +78,10 @@ struct stage_wrapper
 };
 #endif
 
+#if defined(__GNUC__) && __GNUC__ >= 7
+#  pragma GCC diagnostic push
+#  pragma GCC diagnostic ignored "-Wuninitialized"
+#endif
 
 template<
 size_t StageCount,
@@ -183,7 +187,9 @@ private:
 
 };
 
-
+#if defined(__GNUC__) && __GNUC__ >= 7
+#  pragma GCC diagnostic pop
+#endif
 
 /*********** DOXYGEN *************/
 

@@ -34,7 +34,7 @@
 #include <boost/test/unit_test.hpp>
 
 #include <boost/ref.hpp>
-#include <boost/bind.hpp>
+#include <boost/bind/bind.hpp>
 #include <boost/utility.hpp>
 #include <boost/type_traits/add_reference.hpp>
 
@@ -60,6 +60,7 @@ using std::vector;
 
 using namespace boost::unit_test;
 using namespace boost::numeric::odeint;
+using namespace boost::placeholders;
 namespace mpl = boost::mpl;
 
 const double result = 2.2; // two steps
@@ -70,7 +71,7 @@ template< class Stepper , class System >
 void check_controlled_stepper_concept( Stepper &stepper , System system , typename Stepper::state_type &x )
 {
     typedef Stepper stepper_type;
-    typedef typename stepper_type::deriv_type container_type;
+    //typedef typename stepper_type::deriv_type container_type;
     //typedef typename stepper_type::order_type order_type;  controlled_error_stepper don't necessarily have a order (burlish-stoer)
     typedef typename stepper_type::time_type time_type;
 
@@ -162,7 +163,7 @@ struct perform_controlled_stepper_test< ControlledStepper , boost::array<T,1> >
         using std::abs;
         array_type x;
         x[0] = 2.0;
-        ControlledStepper controlled_stepper;
+        ControlledStepper controlled_stepper {};
         constant_system_functor_standard sys;
 #ifndef _MSC_VER
         // dont run this for MSVC due to compiler bug 697006

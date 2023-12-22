@@ -20,6 +20,21 @@
     #pragma warning(disable:4996)
 #endif
 
+// Need this PR to be merged to actually fix the issue: https://github.com/boostorg/ublas/pull/153
+#if defined(__clang__) && __clang_major__ >= 13 && !defined(__APPLE__)
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-copy-with-user-provided-copy"
+#elif defined(__clang__) && __clang_major__ >= 10
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-copy"
+#elif defined(__GNUC__) && __GNUC__ >= 9
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-copy"
+#elif defined(_MSC_VER)
+#pragma warning(push)
+#pragma warning(disable : 5267)
+#endif
+
 #define BOOST_TEST_MODULE odeint_is_resizeable
 
 #include <vector>
@@ -97,7 +112,6 @@ BOOST_AUTO_TEST_CASE( test_fusion_quantity_sequence )
     namespace si = boost::units::si;
 
     typedef double value_type;
-    typedef units::quantity< si::time , value_type > time_type;
     typedef units::quantity< si::length , value_type > length_type;
     typedef units::quantity< si::velocity , value_type > velocity_type;
     typedef boost::fusion::vector< length_type , velocity_type > state_type;
@@ -114,3 +128,11 @@ BOOST_AUTO_TEST_CASE( test_my_seq2 )
 {
     BOOST_CHECK( is_resizeable< my_seq2< double > >::value );
 }
+
+#if defined(__clang__) && __clang_major__ >= 10
+#pragma clang diagnostic pop
+#elif defined(__GNUC__) && __GNUC__ >= 9
+#pragma GCC diagnostic pop
+#elif defined(_MSC_VER)
+#pragma warning(pop)
+#endif

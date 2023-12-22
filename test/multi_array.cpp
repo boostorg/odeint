@@ -184,7 +184,7 @@ BOOST_AUTO_TEST_CASE( test_for_each2_vector )
 struct vector_ode
 {
     const static size_t n = 128;
-    void operator()( const vector_type &x , vector_type &dxdt , double t ) const
+    void operator()( const vector_type &x , vector_type &dxdt , double /*t*/ ) const
     {
         dxdt[-1] = x[n] - 2.0 * x[-1] + x[0];
         for( size_t i=0 ; i<n ; ++i )

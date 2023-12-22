@@ -23,7 +23,7 @@
 #include <boost/array.hpp>
 
 #include <boost/test/unit_test.hpp>
-#include <boost/test/floating_point_comparison.hpp>
+#include <boost/test/tools/floating_point_comparison.hpp>
 
 #include <boost/units/systems/si/length.hpp>
 #include <boost/units/systems/si/time.hpp>

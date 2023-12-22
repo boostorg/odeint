@@ -27,6 +27,11 @@ project
       <link>static
       <toolset>clang:<cxxflags>-Wno-unused-variable
       # <cxxflags>-D_SCL_SECURE_NO_WARNINGS
+      <define>_CRT_SECURE_NO_WARNINGS
+      <warnings>extra
+      # <toolset>msvc:<warnings-as-errors>on
+      <toolset>clang:<warnings-as-errors>on
+      <toolset>gcc:<warnings-as-errors>on
       [ requires cxx11_noexcept cxx11_rvalue_references sfinae_expr cxx11_auto_declarations cxx11_lambdas cxx11_unified_initialization_syntax cxx11_hdr_tuple cxx11_hdr_initializer_list cxx11_hdr_chrono cxx11_thread_local cxx11_constexpr cxx11_nullptr cxx11_numeric_limits cxx11_decltype cxx11_hdr_array cxx11_hdr_atomic cxx11_hdr_type_traits cxx11_allocator cxx11_explicit_conversion_operators ]
     ;
 
@@ -43,11 +48,11 @@ test-suite "odeint"
     [ run implicit_euler.cpp ]
 # disable in clang
     [ run fusion_algebra.cpp : : : <toolset>clang:<build>no <toolset>gcc-mingw:<cxxflags>-Wa,-mbig-obj <debug-symbols>off <toolset>msvc:<cxxflags>/bigobj ]
-    [ run stepper_with_units.cpp : : : <toolset>clang:<build>no <toolset>gcc-mingw:<cxxflags>-Wa,-mbig-obj <debug-symbols>off <toolset>msvc:<cxxflags>/bigobj ]
+    [ run stepper_with_units.cpp : : : <toolset>clang:<build>no <toolset>gcc-mingw:<cxxflags>-Wa,-mbig-obj <debug-symbols>off <toolset>msvc:<cxxflags>/bigobj [ requires cxx14_decltype_auto cxx14_generic_lambdas cxx14_return_type_deduction cxx14_variable_templates cxx14_constexpr ] ]
     [ run stepper_copying.cpp ]
     [ run stepper_with_ranges.cpp ]
     [ run rosenbrock4.cpp ]
-    [ run rosenbrock4_mp.cpp ]
+    [ run rosenbrock4_mp.cpp : : : [ requires cxx14_decltype_auto cxx14_generic_lambdas cxx14_return_type_deduction cxx14_variable_templates cxx14_constexpr ] ]
     [ run is_pair.cpp ]
     [ run adams_bashforth.cpp ]
     [ run adams_moulton.cpp ]
@@ -56,11 +61,11 @@ test-suite "odeint"
     [ run adaptive_adams_coefficients.cpp ]
     [ run generic_stepper.cpp ]
     [ run generic_error_stepper.cpp ]
-    [ run bulirsch_stoer.cpp ]
-    [ run integrate_times.cpp ]
-    [ run integrate_times.cpp : : : <define>ODEINT_INTEGRATE_ITERATOR : integrate_times_iterator ]
-    [ run integrate.cpp ]
-    [ run integrate.cpp : : : <define>ODEINT_INTEGRATE_ITERATOR : integrate_iterator ]
+    [ run bulirsch_stoer.cpp : : : [ requires cxx14_decltype_auto cxx14_generic_lambdas cxx14_return_type_deduction cxx14_variable_templates cxx14_constexpr ] ]
+    [ run integrate_times.cpp : : : [ requires cxx14_decltype_auto cxx14_generic_lambdas cxx14_return_type_deduction cxx14_variable_templates cxx14_constexpr ]  ]
+    [ run integrate_times.cpp : : : [ requires cxx14_decltype_auto cxx14_generic_lambdas cxx14_return_type_deduction cxx14_variable_templates cxx14_constexpr ]  <define>ODEINT_INTEGRATE_ITERATOR : integrate_times_iterator ]
+    [ run integrate.cpp : : : [ requires cxx14_decltype_auto cxx14_generic_lambdas cxx14_return_type_deduction cxx14_variable_templates cxx14_constexpr ]  ]
+    [ run integrate.cpp : : : [ requires cxx14_decltype_auto cxx14_generic_lambdas cxx14_return_type_deduction cxx14_variable_templates cxx14_constexpr ] <define>ODEINT_INTEGRATE_ITERATOR : integrate_iterator ]
     [ run integrate_implicit.cpp ]
     [ run integrate_implicit.cpp : : : <define>ODEINT_INTEGRATE_ITERATOR : integrate_implicit_iterator ]
     [ run generation.cpp ]
@@ -84,11 +89,11 @@ test-suite "odeint"
     [ run n_step_time_iterator.cpp ]
     [ run times_iterator.cpp ]
     [ run times_time_iterator.cpp ]
-    [ run step_size_limitation.cpp ]
-    [ run integrate_overflow.cpp ]
+    [ run step_size_limitation.cpp : : : [ requires cxx14_decltype_auto cxx14_generic_lambdas cxx14_return_type_deduction cxx14_variable_templates cxx14_constexpr ] ]
+    [ run integrate_overflow.cpp : : : [ requires cxx14_decltype_auto cxx14_generic_lambdas cxx14_return_type_deduction cxx14_variable_templates cxx14_constexpr ] ]
     [ compile unwrap_boost_reference.cpp ]
     [ compile unwrap_reference.cpp ]
-    [ compile std_array.cpp ]
+    [ compile std_array.cpp : [ requires cxx14_decltype_auto cxx14_generic_lambdas cxx14_return_type_deduction cxx14_variable_templates cxx14_constexpr ] ]
     : 
         <testing.launcher>valgrind
     ;

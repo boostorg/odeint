@@ -14,6 +14,11 @@
  copy at http://www.boost.org/LICENSE_1_0.txt)
  */
 
+#if defined(__GNUC__) && __GNUC__ >= 5
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+#endif
+
 #define BOOST_TEST_MODULE odeint_integrate_times
 
 #include <boost/test/unit_test.hpp>
@@ -67,13 +72,18 @@ struct push_back_time
     push_back_time( std::vector< double > &times )
     :  m_times( times ) { }
 
-    void operator()( const state_type &x , double t )
+    void operator()( const state_type &/*x*/ , double t )
     {
         m_times.push_back( t );
     }
 };
 
 BOOST_AUTO_TEST_SUITE( integrate_times_test )
+
+#if defined(__GNUC__) && __GNUC__ >= 5
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+#endif
 
 BOOST_AUTO_TEST_CASE( test_integrate_times )
 {
@@ -144,6 +154,9 @@ BOOST_AUTO_TEST_CASE( test_integrate_times )
 
 }
 
+#if defined(__GNUC__) && __GNUC__ >= 5
+#pragma GCC diagnostic pop
+#endif
 
 BOOST_AUTO_TEST_CASE( test_integrate_times_ranges )
 {
@@ -245,3 +258,7 @@ BOOST_AUTO_TEST_CASE( test_integrate_times_overshoot )
 }
 
 BOOST_AUTO_TEST_SUITE_END()
+
+#if defined(__GNUC__) && __GNUC__ >= 5
+#pragma GCC diagnostic pop
+#endif

@@ -39,7 +39,7 @@ typedef double value_type;
 typedef std::vector< value_type > state_type;
 
 // the famous lorenz system as usual
-void lorenz( const state_type &x , state_type &dxdt , const value_type t )
+void lorenz( const state_type &x , state_type &dxdt , const value_type /*t*/ )
 {
     //const value_type sigma( 10.0 );
     const value_type R( 28.0 );
@@ -58,7 +58,7 @@ struct push_back_time
     push_back_time( std::vector< double > &times )
             :  m_times( times ) { }
 
-    void operator()( const state_type &x , double t )
+    void operator()( const state_type &/*x*/ , double t )
     {
         m_times.push_back( t );
     }

@@ -95,6 +95,17 @@ public:
     const static size_t m_k_max = 8;
 
 
+// Claims m_error_checker will be init after m_max_dt
+#if defined(__clang__) && __clang_major__ >= 10
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wreorder-ctor"
+#elif defined(__GNUC__)
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wreorder"
+#elif defined(_MSC_VER)
+#pragma warning(push)
+#pragma warning(disable : 5038)
+#endif
 
     bulirsch_stoer_dense_out(
         value_type eps_abs = 1E-6 , value_type eps_rel = 1E-6 ,
@@ -837,5 +848,13 @@ private:
 }
 }
 }
+
+#if defined(__clang__) && __clang_major__ >= 10
+#pragma clang diagnostic pop
+#elif defined(__GNUC__)
+#pragma GCC diagnostic pop
+#elif defined(_MSC_VER)
+#pragma warning(pop)
+#endif
 
 #endif // BOOST_NUMERIC_ODEINT_STEPPER_BULIRSCH_STOER_HPP_INCLUDED

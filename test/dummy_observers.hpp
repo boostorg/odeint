@@ -27,7 +27,7 @@ namespace odeint {
 struct dummy_observer
 {
     template< class State >
-    void operator()( const State &s ) const
+    void operator()( const State &/*s*/ ) const
     {
     }
 };

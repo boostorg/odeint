@@ -48,7 +48,7 @@ const double b = 8.0 / 3.0;
 struct lorenz
 {
     template< class State , class Deriv >
-    void operator()( const State &x , Deriv &dxdt , double t ) const
+    void operator()( const State &x , Deriv &dxdt , double /*t*/ ) const
     {
         dxdt[0] = sigma * ( x[1] - x[0] );
         dxdt[1] = R * x[0] - x[1] - x[0] * x[2];
@@ -59,7 +59,7 @@ struct lorenz
 struct const_system
 {
     template< class State , class Deriv >
-    void operator()( const State &x , Deriv &dxdt , double t ) const
+    void operator()( const State &/*x*/ , Deriv &dxdt , double /*t*/ ) const
     {
         dxdt[0] = 1.0;
         dxdt[1] = 1.0;
@@ -70,7 +70,7 @@ struct const_system
 struct sin_system
 {
     template< class State , class Deriv >
-    void operator()( const State &x , Deriv &dxdt , double t ) const
+    void operator()( const State &x , Deriv &dxdt , double /*t*/ ) const
     {
         dxdt[0] = sin( x[0] );
         dxdt[1] = cos( x[1] );

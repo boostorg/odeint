@@ -19,6 +19,11 @@
     #pragma warning(disable:4996)
 #endif
 
+#if defined(__GNUC__) && __GNUC__ >= 5
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+#endif
+
 #define BOOST_TEST_MODULE odeint_iterators_symplectic
 
 #define BOOST_FUSION_INVOKE_MAX_ARITY 15
@@ -72,3 +77,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE( test_integrate_const , Stepper , complete_stepper
 }
 
 BOOST_AUTO_TEST_SUITE_END()
+
+#if defined(__GNUC__) && __GNUC__ >= 5
+#pragma GCC diagnostic pop
+#endif

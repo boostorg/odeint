@@ -23,6 +23,10 @@ namespace numeric {
 namespace odeint {
 namespace detail {
 
+#if defined(__GNUC__) && __GNUC__ >= 7
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wuninitialized"
+#endif
 
     template< class Iterator1 , class Operation >
     inline void for_each1( Iterator1 first1 , Iterator1 last1 , Operation op )
@@ -155,6 +159,9 @@ namespace detail {
             op( *first1++ , *first2++ , *first3++ , *first4++ , *first5++ , *first6++ , *first7++ , *first8++ , *first9++ , *first10++ , *first11++ , *first12++ , *first13++ , *first14++ , *first15++ );
     }
 
+#if defined(__GNUC__) && __GNUC__ >= 7
+#pragma GCC diagnostic pop
+#endif
 
 } // detail
 } // odeint
