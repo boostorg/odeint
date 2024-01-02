@@ -263,7 +263,7 @@ public:
      * \brief Tries to perform one step.
      *
      * This method tries to do one step with step size dt. If the error estimate
-     * is to large, the step is rejected and the method returns fail and the 
+     * is too large, the step is rejected and the method returns fail and the 
      * step size dt is reduced. If the error estimate is acceptably small, the
      * step is performed, success is returned and dt might be increased to make 
      * the steps as large as possible. This method also updates t if a step is
