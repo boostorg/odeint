@@ -132,7 +132,7 @@ public:
 
     void do_step(const deriv_type &dxdt, const int o = 0)
     {
-        m_phi_resizer.adjust_size( dxdt , detail::bind( &aac_type::template resize_phi_impl< deriv_type > , std::ref( *this ) , detail::_1 ) );
+        m_phi_resizer.adjust_size(dxdt, [this](auto&& arg) { return this->resize_phi_impl<deriv_type>(std::forward<decltype(arg)>(arg)); });
 
         phi[o][0].m_v = dxdt;
 
