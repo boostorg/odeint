@@ -136,7 +136,7 @@ public:
     template< class System , class CoorInOut , class MomentumInOut >
     void do_step( System system , CoorInOut &q , MomentumInOut &p , time_type t , time_type dt )
     {
-        do_step( system , std::make_pair( detail::ref( q ) , detail::ref( p ) ) , t , dt );
+        do_step( system , std::make_pair( std::ref( q ) , std::ref( p ) ) , t , dt );
     }
 
     /**
@@ -146,7 +146,7 @@ public:
     template< class System , class CoorInOut , class MomentumInOut >
     void do_step( System system , const CoorInOut &q , const MomentumInOut &p , time_type t , time_type dt )
     {
-        do_step( system , std::make_pair( detail::ref( q ) , detail::ref( p ) ) , t , dt );
+        do_step( system , std::make_pair( std::ref( q ) , std::ref( p ) ) , t , dt );
     }
 
 
@@ -206,8 +206,8 @@ private:
         coor_out_type &coor_out = state_out.first;
         momentum_out_type &momentum_out = state_out.second;
 
-        m_dqdt_resizer.adjust_size( coor_in , detail::bind( &internal_stepper_base_type::template resize_dqdt< coor_in_type > , detail::ref( *this ) , detail::_1 ) );
-        m_dpdt_resizer.adjust_size( momentum_in , detail::bind( &internal_stepper_base_type::template resize_dpdt< momentum_in_type > , detail::ref( *this ) , detail::_1 ) );
+        m_dqdt_resizer.adjust_size(coor_in, [this](auto&& arg) { return this->resize_dqdt<coor_in_type>(std::forward<decltype(arg)>(arg)); });
+        m_dpdt_resizer.adjust_size(momentum_in, [this](auto&& arg) { return this->resize_dpdt<momentum_in_type>(std::forward<decltype(arg)>(arg)); });
 
         // ToDo: check sizes?
 
@@ -258,8 +258,7 @@ private:
 
 
         // m_dqdt not required when called with momentum_func only - don't resize
-        // m_dqdt_resizer.adjust_size( coor_in , detail::bind( &internal_stepper_base_type::template resize_dqdt< coor_in_type > , detail::ref( *this ) , detail::_1 ) );
-        m_dpdt_resizer.adjust_size( momentum_in , detail::bind( &internal_stepper_base_type::template resize_dpdt< momentum_in_type > , detail::ref( *this ) , detail::_1 ) );
+        m_dpdt_resizer.adjust_size(momentum_in, [this](auto&& arg) { return this->resize_dpdt<momentum_in_type>(std::forward<decltype(arg)>(arg)); });
 
 
         // ToDo: check sizes?

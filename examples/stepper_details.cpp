@@ -15,7 +15,6 @@
 
 #include <iostream>
 #include <array>
-#include <boost/bind.hpp>
 #include <boost/numeric/odeint.hpp>
 
 using namespace std;
@@ -130,7 +129,7 @@ int main( int argc , char **argv )
 
         //[ symplectic_stepper_detail_system_class_example
         harm_osc h;
-        rkn.do_step( make_pair( boost::bind( &harm_osc::f1 , h , _1 , _2 ) , boost::bind( &harm_osc::f2 , h , _1 , _2 ) ) ,
+        rkn.do_step( make_pair( detail::bind( &harm_osc::f1 , h , _1 , _2 ) , detail::bind( &harm_osc::f2 , h , _1 , _2 ) ) ,
                 x , t , dt );
         //]
     }

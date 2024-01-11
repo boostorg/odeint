@@ -34,7 +34,6 @@
 #include <boost/test/unit_test.hpp>
 
 #include <boost/ref.hpp>
-#include <boost/bind.hpp>
 #include <boost/utility.hpp>
 #include <boost/type_traits/add_reference.hpp>
 
