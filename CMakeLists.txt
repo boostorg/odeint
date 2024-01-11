@@ -18,7 +18,6 @@ target_link_libraries(boost_numeric_odeint
     Boost::compute
     Boost::config
     Boost::core
-    Boost::function
     Boost::fusion
     Boost::iterator
     Boost::math
