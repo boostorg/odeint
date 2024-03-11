@@ -8,6 +8,7 @@
 project
     : requirements 
       <define>BOOST_ALL_NO_LIB=1
+      <source>/boost/multiprecision//boost_multiprecision
     : 
     ;
     
