@@ -11,6 +11,7 @@ import testing ;
 project
     : requirements
       <library>/boost/test//boost_unit_test_framework
+      <library>/boost/format//boost_format
       <define>BOOST_ALL_NO_LIB=1
       <link>static
       <toolset>clang:<cxxflags>-Wno-unused-variable
