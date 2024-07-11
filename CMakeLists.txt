@@ -45,7 +45,6 @@ else()
       Boost::fusion
       Boost::iterator
       Boost::math
-      Boost::mpi
       Boost::mpl
       Boost::multi_array
       Boost::numeric_ublas
@@ -57,6 +56,14 @@ else()
       Boost::units
       Boost::utility
   )
+
+  # From CMake 3.30 linking against MPI when it does not exist gives errors
+  if(BOOST_ENABLE_MPI)
+    target_link_libraries(boost_numeric_odeint
+      INTERFACE
+        Boost::mpi
+    )
+  endif()
 
 endif()
 
