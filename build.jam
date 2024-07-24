@@ -5,33 +5,36 @@
 
 require-b2 5.2 ;
 
+constant boost_dependencies :
+    /boost/assert//boost_assert
+    /boost/compute//boost_compute
+    /boost/config//boost_config
+    /boost/core//boost_core
+    /boost/fusion//boost_fusion
+    /boost/iterator//boost_iterator
+    /boost/math//boost_math
+    /boost/mpi//boost_mpi
+    /boost/mpl//boost_mpl
+    /boost/multi_array//boost_multi_array
+    /boost/ublas//boost_ublas
+    /boost/preprocessor//boost_preprocessor
+    /boost/range//boost_range
+    /boost/static_assert//boost_static_assert
+    /boost/throw_exception//boost_throw_exception
+    /boost/type_traits//boost_type_traits
+    /boost/units//boost_units
+    /boost/utility//boost_utility ;
+
 project /boost/odeint
     : common-requirements
-        <library>/boost/assert//boost_assert
-        <library>/boost/compute//boost_compute
-        <library>/boost/config//boost_config
-        <library>/boost/core//boost_core
-        <library>/boost/fusion//boost_fusion
-        <library>/boost/iterator//boost_iterator
-        <library>/boost/math//boost_math
-        <library>/boost/mpi//boost_mpi
-        <library>/boost/mpl//boost_mpl
-        <library>/boost/multi_array//boost_multi_array
-        <library>/boost/ublas//boost_ublas
-        <library>/boost/preprocessor//boost_preprocessor
-        <library>/boost/range//boost_range
-        <library>/boost/static_assert//boost_static_assert
-        <library>/boost/throw_exception//boost_throw_exception
-        <library>/boost/type_traits//boost_type_traits
-        <library>/boost/units//boost_units
-        <library>/boost/utility//boost_utility
         <include>include
     ;
 
 explicit
-    [ alias boost_odeint ]
+    [ alias boost_odeint : : : : <library>$(boost_dependencies) ]
     [ alias all : boost_odeint examples performance test ]
     ;
 
 call-if : boost-library odeint
     ;
+
