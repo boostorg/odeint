@@ -22,7 +22,7 @@ local NT2_SIMD_FLAGS = [ os.environ NT2_SIMD_FLAGS ] ;
 
 project
   : requirements
-    <library>/boost/test//boost_test
+    <library>/boost/test//included
     <define>BOOST_ALL_NO_LIB=1
     <include>$(NT2_ROOT_PATH)/include/
     <link>static
