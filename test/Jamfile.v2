@@ -7,13 +7,13 @@
 
 # bring in rules for testing
 
-require-b2 5.0.1 ;
-import-search /boost/config/checks ;
 import testing ;
+import-search /boost/config/checks ;
 import config : requires ;
 
 project
     : requirements
+      <library>/boost/odeint//boost_odeint
       <define>BOOST_ALL_NO_LIB=1
       # use test library
       <library>/boost/test//boost_unit_test_framework
@@ -81,10 +81,10 @@ test-suite "odeint"
     [ compile unwrap_boost_reference.cpp ]
     [ compile unwrap_reference.cpp ]
     [ compile std_array.cpp ]
-    : 
+    :
         <testing.launcher>valgrind
     ;
-    
+
 # also run numeric tests
 build-project numeric ;
 

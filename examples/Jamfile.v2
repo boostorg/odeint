@@ -5,14 +5,16 @@
 # accompanying file LICENSE_1_0.txt or copy at
 # http://www.boost.org/LICENSE_1_0.txt)
 
+using python ;
 
 project
-    : requirements 
+    : requirements
+      <library>/boost/odeint//boost_odeint
       <define>BOOST_ALL_NO_LIB=1
       <library>/python//python
-    : 
+    :
     ;
-    
+
 
 exe harmonic_oscillator : harmonic_oscillator.cpp ;
 exe solar_system : solar_system.cpp ;
