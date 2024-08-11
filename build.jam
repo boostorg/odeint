@@ -12,7 +12,7 @@ constant boost_dependencies :
     /boost/core//boost_core
     /boost/fusion//boost_fusion
     /boost/iterator//boost_iterator
-    /boost/math//boost_math
+    /boost/math//boost_math_tr1
     /boost/mpi//boost_mpi
     /boost/mpl//boost_mpl
     /boost/multi_array//boost_multi_array
