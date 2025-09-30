@@ -9,10 +9,38 @@ project(boost_numeric_odeint VERSION "${BOOST_SUPERPROJECT_VERSION}" LANGUAGES C
 
 option(BOOST_NUMERIC_ODEINT_NO_ADAPTORS "Build odeint without boost::compute and boost::mpi support" OFF)
 
+# Enable grouping of targets in IDE views
+set_property(GLOBAL PROPERTY USE_FOLDERS ON)
+
 add_library(boost_numeric_odeint INTERFACE)
 add_library(Boost::numeric_odeint ALIAS boost_numeric_odeint)
 
 target_include_directories(boost_numeric_odeint INTERFACE include)
+
+set(BOOST_ODEINT_REQUIRED_COMPONENTS 
+  assert
+  config
+  core
+  fusion
+  iterator
+  math
+  mpl
+  multi_array
+  numeric_ublas
+  preprocessor
+  range
+  static_assert
+  throw_exception
+  type_traits
+  units
+  utility)
+if(NOT BOOST_NUMERIC_ODEINT_NO_ADAPTORS)
+  list(APPEND BOOST_ODEINT_REQUIRED_COMPONENTS compute)
+  if(BOOST_ENABLE_MPI)
+    list(APPEND BOOST_ODEINT_REQUIRED_COMPONENTS mpi)
+  endif()
+endif()
+find_package(Boost REQUIRED COMPONENTS ${BOOST_ODEINT_REQUIRED_COMPONENTS})
 
 target_link_libraries(boost_numeric_odeint
   INTERFACE
@@ -49,6 +77,10 @@ if(NOT BOOST_NUMERIC_ODEINT_NO_ADAPTORS)
     )
   endif()
 
+endif()
+
+if(BOOST_BUILD_EXAMPLES AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/examples/CMakeLists.txt")
+  add_subdirectory(examples)
 endif()
 
 if(BUILD_TESTING AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/test/CMakeLists.txt")
