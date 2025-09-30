@@ -7,6 +7,8 @@ cmake_minimum_required(VERSION 3.5...3.20)
 
 project(boost_numeric_odeint VERSION "${BOOST_SUPERPROJECT_VERSION}" LANGUAGES CXX)
 
+option(BOOST_NUMERIC_ODEINT_NO_ADAPTORS "Build odeint without boost::compute and boost::mpi support" OFF)
+
 add_library(boost_numeric_odeint INTERFACE)
 add_library(Boost::numeric_odeint ALIAS boost_numeric_odeint)
 
