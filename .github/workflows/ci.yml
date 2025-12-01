@@ -40,5 +40,8 @@ jobs:
     # with:
     #   enable_reflection: true
     #   enable_windows: false
+    with:
+      exclude_compiler: 'icpx-2025' # Invalid commands errors
+      exclude_cxxstd: '2b'          # Clang-16 + 2b has issues with libstdc++ compat
     secrets:
       CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
