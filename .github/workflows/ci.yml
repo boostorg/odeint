@@ -45,5 +45,6 @@ jobs:
       exclude_cxxstd: '2b'          # Clang-16 + 2b has issues with libstdc++ compat
       enable_cmake: false
       enable_cygwin : false
+      enable_multiarch: false
     secrets:
       CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
