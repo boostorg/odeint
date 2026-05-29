@@ -64,7 +64,7 @@ public:
     struct sys_functor
     {
         template< class Tuple >
-        __host__ __device__
+        _CCCL_HOST_DEVICE
         void operator()( Tuple t )  // this functor works on tuples of values
         {
             // first, unpack the tuple into value, neighbors and omega
