@@ -52,7 +52,7 @@ Thrust follows a functional programming approach. If you want to perform a calcu
 struct add_two
 {
     template< class T >
-    __host__ __device__
+    _CCCL_HOST_DEVICE
     void operator()( T &t ) const
     {
         t += T( 2 );
@@ -74,7 +74,7 @@ The mean field is calculated in a class `mean_field_calculator`
 
 [thrust_phase_ensemble_mean_field_calculator] 
 
-Inside this class two member structures `sin_functor` and `cos_functor` are defined. They compute the sine and the cosine of a value and they are used within a transform iterator to calculate the sum of ['sin(__phi[subl k])] and ['cos(__phi[subl k])]. The classifiers `__host__` and `__device__` are CUDA specific and define a function or operator which can be executed on the GPU as well as on the CPU. The line 
+Inside this class two member structures `sin_functor` and `cos_functor` are defined. They compute the sine and the cosine of a value and they are used within a transform iterator to calculate the sum of ['sin(__phi[subl k])] and ['cos(__phi[subl k])]. The macro '_CCCL_HOST_DEVICE' defines a function or operator which can be executed on the GPU as well as on the CPU if compiled with nvcc. The line
 
 [thrust_phase_ensemble_sin_sum]
 

@@ -57,7 +57,7 @@ struct mean_field_calculator
 {
     struct sin_functor : public thrust::unary_function< value_type , value_type >
     {
-        __host__ __device__
+        _CCCL_HOST_DEVICE
         value_type operator()( value_type x) const
         {
             return sin( x );
@@ -66,7 +66,7 @@ struct mean_field_calculator
 
     struct cos_functor : public thrust::unary_function< value_type , value_type >
     {
-        __host__ __device__
+        _CCCL_HOST_DEVICE
         value_type operator()( value_type x) const
         {
             return cos( x );
@@ -111,7 +111,7 @@ public:
         : m_K( K ) , m_Theta( Theta ) , m_epsilon( epsilon ) { }
 
         template< class Tuple >
-        __host__ __device__
+        _CCCL_HOST_DEVICE
         void operator()( Tuple t )
         {
             thrust::get<2>(t) = thrust::get<1>(t) + m_epsilon * m_K * sin( m_Theta - thrust::get<0>(t) );

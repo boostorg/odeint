@@ -48,7 +48,7 @@ struct lorenz_system
     struct lorenz_functor
     {
         template< class T >
-        __host__ __device__
+        _CCCL_HOST_DEVICE
         void operator()( T t ) const
         {
             // unpack the parameter we want to vary and the Lorenz variables
@@ -98,7 +98,7 @@ struct lorenz_perturbation_system
     struct lorenz_perturbation_functor
     {
         template< class T >
-        __host__ __device__
+        _CCCL_HOST_DEVICE
         void operator()( T t ) const
         {
             value_type R = thrust::get< 1 >( t );
@@ -171,7 +171,7 @@ struct lyap_observer
     struct lyap_functor
     {
         template< class T >
-        __host__ __device__
+        _CCCL_HOST_DEVICE
         void operator()( T t ) const
         {
             value_type &dx = thrust::get< 0 >( t );

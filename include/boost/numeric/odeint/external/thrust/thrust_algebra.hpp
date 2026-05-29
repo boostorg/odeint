@@ -37,7 +37,7 @@ namespace detail {
     struct maximum
     {
         template< class Fac1 , class Fac2 >
-        __host__ __device__
+        _CCCL_HOST_DEVICE
         Value operator()( const Fac1 t1 , const Fac2 t2 ) const
         {
             return ( abs( t1 ) < abs( t2 ) ) ? t2 : t1 ;

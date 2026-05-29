@@ -34,7 +34,7 @@ struct relaxation
     struct relaxation_functor
     {
         template< class T >
-        __host__ __device__
+        _CCCL_HOST_DEVICE
         void operator()( T t ) const
         {
             // unpack the parameter we want to vary and the Lorenz variables

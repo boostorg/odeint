@@ -39,7 +39,7 @@ struct thrust_operations
         : m_alpha1( alpha1 ) , m_alpha2( alpha2 ) { }
 
         template< class Tuple >
-        __host__ __device__
+        _CCCL_HOST_DEVICE
         void operator()( Tuple t ) const
         {
             thrust::get<0>(t) = m_alpha1 * thrust::get<1>(t) + m_alpha2 * thrust::get<2>(t);
@@ -56,7 +56,7 @@ struct thrust_operations
         : m_alpha1( alpha1 ) , m_alpha2( alpha2 ) { }
 
         template< class Tuple >
-        __host__ __device__
+        _CCCL_HOST_DEVICE
         void operator()( Tuple t ) const
         {
             typename thrust::tuple_element<0,Tuple>::type tmp = thrust::get<0>(t);
@@ -76,7 +76,7 @@ struct thrust_operations
         : m_alpha1( alpha1 ) , m_alpha2( alpha2 ) , m_alpha3( alpha3 ) { }
 
         template< class Tuple >
-        __host__ __device__
+        _CCCL_HOST_DEVICE
         void operator()( Tuple t ) const
         {
             thrust::get<0>(t) = m_alpha1 * thrust::get<1>(t) +
@@ -98,7 +98,7 @@ struct thrust_operations
         : m_alpha1( alpha1 ) , m_alpha2( alpha2 ) , m_alpha3( alpha3 ) , m_alpha4( alpha4 ){ }
 
         template< class Tuple >
-        __host__ __device__
+        _CCCL_HOST_DEVICE
         void operator()( Tuple t ) const
         {
             thrust::get<0>(t) = m_alpha1 * thrust::get<1>(t) +
@@ -125,7 +125,7 @@ struct thrust_operations
           m_alpha4( alpha4 ) , m_alpha5( alpha5 ) { }
 
         template< class Tuple >
-        __host__ __device__
+        _CCCL_HOST_DEVICE
         void operator()( Tuple t ) const
         {
             thrust::get<0>(t) = m_alpha1 * thrust::get<1>(t) +
@@ -154,7 +154,7 @@ struct thrust_operations
           m_alpha4( alpha4 ) , m_alpha5( alpha5 ) , m_alpha6( alpha6 ) { }
 
         template< class Tuple >
-        __host__ __device__
+        _CCCL_HOST_DEVICE
         void operator()( Tuple t ) const
         {
             thrust::get<0>(t) = m_alpha1 * thrust::get<1>(t) +
@@ -185,7 +185,7 @@ struct thrust_operations
           m_alpha4( alpha4 ) , m_alpha5( alpha5 ) , m_alpha6( alpha6 ) , m_alpha7( alpha7 ) { }
 
         template< class Tuple >
-        __host__ __device__
+        _CCCL_HOST_DEVICE
         void operator()( Tuple t ) const
         {
             thrust::get<0>(t) = m_alpha1 * thrust::get<1>(t) +
@@ -211,7 +211,7 @@ struct thrust_operations
 
 
         template< class Tuple >
-        __host__ __device__
+        _CCCL_HOST_DEVICE
         void operator()( Tuple t ) const
         {
             using std::abs;
