@@ -25,6 +25,7 @@ project
 test-suite "odeint"
     :
     [ run euler_stepper.cpp ]
+    [ run controlled_runge_kutta_fsal.cpp ]
     # The following 3 tests use Boost.Multiprecision which requires C++14
     [ run runge_kutta_concepts.cpp /boost/multiprecision//boost_multiprecision : : : <toolset>gcc-mingw:<cxxflags>-Wa,-mbig-obj <debug-symbols>off <toolset>msvc:<cxxflags>/bigobj [ requires cxx14_decltype_auto cxx14_generic_lambdas cxx14_return_type_deduction cxx14_variable_templates cxx14_constexpr ] ]
     [ run runge_kutta_error_concepts.cpp /boost/multiprecision//boost_multiprecision : : : <toolset>gcc-mingw:<cxxflags>-Wa,-mbig-obj <debug-symbols>off <toolset>msvc:<cxxflags>/bigobj [ requires cxx14_decltype_auto cxx14_generic_lambdas cxx14_return_type_deduction cxx14_variable_templates cxx14_constexpr ] ]

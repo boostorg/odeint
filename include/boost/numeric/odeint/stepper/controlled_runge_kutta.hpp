@@ -682,7 +682,14 @@ public:
         {
             initialize( system , in , t );
         }
-        return try_step( system , in , m_dxdt.m_v , t , out , dt );
+        m_dxdt_new_resizer.adjust_size(in, [this](auto&& arg) { return this->resize_m_dxdt_new_impl<StateIn>(std::forward<decltype(arg)>(arg)); });
+        // Keep the start derivative until the step has been accepted.
+        controlled_step_result res = try_step( system , in , m_dxdt.m_v , t , out , m_dxdtnew.m_v , dt );
+        if( res == success )
+        {
+            boost::numeric::odeint::copy( m_dxdtnew.m_v , m_dxdt.m_v );
+        }
+        return res;
     }
 
 
